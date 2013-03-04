@@ -13,7 +13,7 @@ public class MainChar {
 	float speedx = 0;
 	float speedy = 0;
 	
-	public MainChar(Image mainchar, int x, int y) throws SlickException{
+	public MainChar(Image mainchar, int x, int y) throws SlickException{  //(x,y) are starting coordinates
 		charsprite = mainchar;
 		this.x = x;
 		this.y = y;
