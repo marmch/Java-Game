@@ -1,14 +1,19 @@
 package enemies;
 
-import entities.Enemy;
+import org.newdawn.slick.SlickException;
+
+import entities.*;
 
 public class Blob1 extends Enemy {
 	
-	public Blob1(String color, int x, int y) {
-		super(color, x, y);
+	final int MAXDASH = 100;
+	int dash = 0;
+	
+	public Blob1(String type, String color, int x, int y) throws SlickException {
+		super(type, color, x, y);
 	}
 	
-	public void move(int delta){
+	public void move(MainChar main, int delta){
 		//This seems to help with lag jumps
 		dcounter++;
 		if(dcounter/1000000 > 0){
@@ -21,6 +26,15 @@ public class Blob1 extends Enemy {
 			deltanum++;
 			averagedelta /= deltanum;
 		}
+		
+		/*
+		if(dash > 0)
+			dash--;
+		else{
+			dash = MAXDASH;
+		}
+		*/
+		super.rotateTowards(main);
 	}
 
 	/*

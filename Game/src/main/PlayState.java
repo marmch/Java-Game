@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
-
+import enemies.*;
 import entities.*;
 
 public class PlayState extends BasicGameState {
@@ -15,7 +15,8 @@ public class PlayState extends BasicGameState {
 	final int BULLETDELAY = 400;
 	int bulletdelta = 0;
 	Image maincharsprite;
-	Image bullet;
+	Image bulletsprite;
+	Image enemysprite;
 	
 	PlayState(int stateID) throws SlickException{
 		this.stateID = stateID;
@@ -28,7 +29,8 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		maincharsprite = new Image("img\\blob3blue.png");
-		bullet = new Image("img\\greenbullet.png");
+		bulletsprite = new Image("img\\greenbullet.png");
+		enemysprite = new Image("img\\blob3blue.png");
 		main = new MainChar(maincharsprite,0,0); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
 	}
@@ -36,15 +38,23 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		main.draw(); //Render main character
-		//Render all bullets
-		for(Bullet b : bulletList)
-			b.draw();
+		
+		//Render bullets
+		for(Bullet bullet : bulletList)
+			bullet.draw();
+		
+		//Render enemies
+		for(Enemy enemy : enemies){
+			enemy.draw();
+		}
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		Input input = gc.getInput(); //Get input
+		
 		main.move(input, delta, 800, 600); //Move main character
+		
 		//Move all bullets and despawn old ones
 		for(int i = 0; i < bulletList.size(); i++){
 			bulletList.get(i).move(delta);
@@ -53,6 +63,7 @@ public class PlayState extends BasicGameState {
 				i--;
 			}
 		}
+		
 		//Fire bullet after delay
 		if(bulletdelta > 0)
 			bulletdelta-= delta;
@@ -60,11 +71,20 @@ public class PlayState extends BasicGameState {
 			spawnBullet();
 			bulletdelta = BULLETDELAY;
 		}
+		
 		main.rotate(input); //Rotate main character towards mouse
+		
+		//Move enemies
+		for(Enemy enemy : enemies){
+			if(enemy.getType().equals("blob1"))
+				((Blob1)enemy).move(main, delta);
+		}
+		
 	}
 
 	public void spawnBullet(){
-		bulletList.add(new Bullet(bullet,main.x + main.charsprite.getWidth()/2,main.y + main.charsprite.getHeight()/2,1f,main.charsprite.getRotation()));
+		bulletList.add(new Bullet(bulletsprite,main.x + main.charsprite.getWidth()/2,main.y + main.charsprite.getHeight()/2,
+				1f,main.charsprite.getRotation()));
 	}
 	
 	@Override

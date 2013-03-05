@@ -16,7 +16,7 @@ public class LevelLoader {
 		base = parser.parse(levelfile);
 	}
 	
-	public void load(){
+	public void load() throws SlickException{
 		enemies = new ArrayList<Enemy>();
 		//System.out.println(base.getName());
 		XMLElementList elementlist = base.getChildren();
@@ -31,9 +31,9 @@ public class LevelLoader {
 				//Create enemy type
 				Enemy enemytemp = null;
 				if(type.equals("blob1"))
-					enemytemp = new Blob1(color,x,y);
+					enemytemp = new Blob1(type,color,x,y);
 				else if(type.equals("blob2"))
-					enemytemp = new Blob2(color,x,y);
+					enemytemp = new Blob2(type,color,x,y);
 				
 				//Add enemy to list
 				enemies.add(enemytemp);
