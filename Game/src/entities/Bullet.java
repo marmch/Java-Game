@@ -36,10 +36,17 @@ public class Bullet {
 		}
 		speedx = (float) Math.cos(Math.toRadians(angle)) * speed * averagedelta;
 		speedy = (float) Math.sin(Math.toRadians(angle)) * speed * averagedelta;
-		System.out.println("speedx: " + averagedelta);
-		System.out.println("speedy: " + speedy);
 		x += speedx;
 		y += speedy;
+	}
+	
+	public boolean outOfMap(int max_x, int max_y){
+		if(x < 0 || x > max_x - bullet.getWidth())
+			return true;
+		else if(y < 0 || y > max_y - bullet.getHeight())
+			return true;
+		else
+			return false;
 	}
 	
 	public void draw(){
