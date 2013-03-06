@@ -23,6 +23,8 @@ public class Enemy {
 		this.y = y;
 		if(type.equals("blob1"))
 			enemy = new Image("img\\blob3blue.png");
+		else if(type.equals("blob3"))
+			enemy = new Image("img\\blob3blue.png");
 	}
 	
 	public String getType(){

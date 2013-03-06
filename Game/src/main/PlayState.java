@@ -12,8 +12,6 @@ public class PlayState extends BasicGameState {
 	MainChar main;
 	ArrayList<Bullet> bulletList;
 	ArrayList<Enemy> enemies;
-	final int BULLETDELAY = 400;
-	int bulletdelta = 0;
 	Image maincharsprite;
 	Image bulletsprite;
 	Image enemysprite;
@@ -71,11 +69,11 @@ public class PlayState extends BasicGameState {
 		}
 		
 		//Fire bullet after delay
-		if(bulletdelta > 0)
-			bulletdelta-= delta;
-		if(main.shoot(input) && bulletdelta <= 0){
-			spawnBullet();
-			bulletdelta = BULLETDELAY;
+		if(main.bulletdelta > 0)
+			main.bulletdelta-= delta;
+		if(main.shoot(input) && main.bulletdelta <= 0){
+			bulletList.add(main.spawnBullet(bulletsprite));
+			main.bulletdelta = main.BULLETDELAY;
 		}
 		
 		main.rotate(input); //Rotate main character towards mouse
@@ -84,13 +82,17 @@ public class PlayState extends BasicGameState {
 		for(Enemy enemy : enemies){
 			if(enemy.getType().equals("blob1"))
 				((Blob1)enemy).move(main, delta);
+			else if(enemy.getType().equals("blob3")){
+				((Blob3)enemy).move(main, delta);
+				if(((Blob3)enemy).bulletdelta > 0)
+					((Blob3)enemy).bulletdelta-= delta;
+				if(((Blob3)enemy).bulletdelta <= 0){
+					bulletList.add(((Blob3)enemy).spawnBullet(bulletsprite));
+					((Blob3)enemy).bulletdelta = ((Blob3)enemy).BULLETDELAY;
+				}
+			}
 		}
 		
-	}
-
-	public void spawnBullet(){
-		bulletList.add(new Bullet(bulletsprite,main.x + main.charsprite.getWidth()/2,main.y + main.charsprite.getHeight()/2,
-				1f,main.charsprite.getRotation()));
 	}
 	
 	@Override

@@ -34,6 +34,8 @@ public class LevelLoader {
 					enemytemp = new Blob1(type,color,x,y);
 				else if(type.equals("blob2"))
 					enemytemp = new Blob2(type,color,x,y);
+				else if(type.equals("blob3"))
+					enemytemp = new Blob3(type,color,x,y);
 				
 				//Add enemy to list
 				enemies.add(enemytemp);

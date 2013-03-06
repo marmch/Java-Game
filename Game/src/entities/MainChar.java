@@ -9,6 +9,8 @@ public class MainChar {
 	public Image charsprite;
 	final float MAXSPEED = 0.3f;  //Maximum speed
 	final float ACCELERATION = 0.002f;  //Acceleration rate
+	public final int BULLETDELAY = 400;
+	public int bulletdelta = 0;
 	public float x;
 	public float y;
 	float speedx = 0;
@@ -195,5 +197,9 @@ public class MainChar {
 	
 	public boolean shoot(Input input) throws SlickException{
 		return input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON);
+	}
+	
+	public Bullet spawnBullet(Image bulletsprite){
+		return new Bullet(bulletsprite,x + charsprite.getWidth()/2,y + charsprite.getHeight()/2,1f,charsprite.getRotation());
 	}
 }
