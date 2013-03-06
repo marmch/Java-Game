@@ -17,6 +17,7 @@ public class PlayState extends BasicGameState {
 	Image maincharsprite;
 	Image bulletsprite;
 	Image enemysprite;
+	int max_x, max_y;
 	
 	PlayState(int stateID) throws SlickException{
 		this.stateID = stateID;
@@ -24,6 +25,11 @@ public class PlayState extends BasicGameState {
 	
 	public void loadEnemies(ArrayList<Enemy> enemies){
 		this.enemies = enemies; //Load enemies
+	}
+	
+	public void setMap(int max_x, int max_y){
+		this.max_x = max_x;
+		this.max_y = max_y;
 	}
 	
 	@Override
@@ -53,12 +59,12 @@ public class PlayState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		Input input = gc.getInput(); //Get input
 		
-		main.move(input, delta, 800, 600); //Move main character
+		main.move(input, delta, max_x, max_y); //Move main character
 		
 		//Move all bullets and despawn old ones
 		for(int i = 0; i < bulletList.size(); i++){
 			bulletList.get(i).move(delta);
-			if(bulletList.get(i).outOfMap(800, 600)){
+			if(bulletList.get(i).outOfMap(max_x, max_y)){
 				bulletList.remove(i);
 				i--;
 			}

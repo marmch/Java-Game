@@ -11,6 +11,8 @@ public class Game extends StateBasedGame{
 	final static int LOADSTATE = 1;
 	final static int PLAYSTATE = 2;
 	final static int PAUSESTATE = 3;
+	final static int RES_X = 1280;
+	final static int RES_Y = 960;
 	public static LoadState load;
 	public static PlayState play;
 	
@@ -22,6 +24,7 @@ public class Game extends StateBasedGame{
 		//this.addState(new MenuState(MENUSTATE));
 		addState(load);
 		addState(play);
+		play.setMap(RES_X, RES_Y);
 		//this.addState(new PauseState(PAUSESTATE));
 		
 		//Enter Load State
@@ -37,7 +40,7 @@ public class Game extends StateBasedGame{
 		System.setProperty("org.lwjgl.librarypath", new File(new File(System.getProperty("user.dir"), "native"), LWJGLUtil.getPlatformName()).getAbsolutePath());
 		System.setProperty("net.java.games.input.librarypath", System.getProperty("org.lwjgl.librarypath"));
 		AppGameContainer app = new AppGameContainer(new Game());
-		app.setDisplayMode(800, 600, false);
+		app.setDisplayMode(RES_X, RES_Y, false);
 		app.start();
 	}
 	

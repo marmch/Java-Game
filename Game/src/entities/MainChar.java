@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 public class MainChar {
 	
 	public Image charsprite;
-	final float MAXSPEED = 0.5f;  //Maximum speed
+	final float MAXSPEED = 0.3f;  //Maximum speed
 	final float ACCELERATION = 0.002f;  //Acceleration rate
 	public float x;
 	public float y;
@@ -43,135 +43,135 @@ public class MainChar {
 		
 		//Key input adds acceleration value to speed
 		if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_D)){
-			slowDown((int)averagedelta);
+			slowDown();
 		}
 		else if(input.isKeyDown(Input.KEY_W) && input.isKeyDown(Input.KEY_S)){
-			slowDown((int)averagedelta);
+			slowDown();
 		}
 		else if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_W)){
 			if(speedx >= -MAXSPEED)
-				speedx -= ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedx -= ACCELERATION/Math.sqrt(2);
 			if(speedy >= -MAXSPEED)
-				speedy -= ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedy -= ACCELERATION/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_D) && input.isKeyDown(Input.KEY_W)){
 			if(speedx <= MAXSPEED)
-				speedx += ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedx += ACCELERATION/Math.sqrt(2);
 			if(speedy >= -MAXSPEED)
-				speedy -= ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedy -= ACCELERATION/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_S)){
 			if(speedx >= -MAXSPEED)
-				speedx -= ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedx -= ACCELERATION/Math.sqrt(2);
 			if(speedy <= MAXSPEED)
-				speedy += ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedy += ACCELERATION/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_D) && input.isKeyDown(Input.KEY_S)){
 			if(speedx <= MAXSPEED)
-				speedx += ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedx += ACCELERATION/Math.sqrt(2);
 			if(speedy <= MAXSPEED)
-				speedy += ACCELERATION*(int)averagedelta/Math.sqrt(2);
+				speedy += ACCELERATION/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_A)){
 			if(speedx >= -MAXSPEED)
-				speedx -= ACCELERATION*(int)averagedelta;
+				speedx -= ACCELERATION;
 			if(speedy > 0){
-				if(speedy - ACCELERATION/2*(int)averagedelta <= 0)
+				if(speedy - ACCELERATION/2 <= 0)
 					speedy = 0;
 				else
-					speedy -= ACCELERATION/2*(int)averagedelta;
+					speedy -= ACCELERATION/2;
 			}
 			if(speedy < 0){
-				if(speedy + ACCELERATION/2*(int)averagedelta >= 0)
+				if(speedy + ACCELERATION/2 >= 0)
 					speedy = 0;
 				else
-					speedy += ACCELERATION/2*(int)averagedelta;
+					speedy += ACCELERATION/2;
 			}
 		}
 		else if(input.isKeyDown(Input.KEY_D)){
 			if(speedx <= MAXSPEED)
-				speedx += ACCELERATION*(int)averagedelta;
+				speedx += ACCELERATION;
 			if(speedy > 0){
-				if(speedy - ACCELERATION/2*(int)averagedelta <= 0)
+				if(speedy - ACCELERATION/2 <= 0)
 					speedy = 0;
 				else
-					speedy -= ACCELERATION/2*(int)averagedelta;
+					speedy -= ACCELERATION/2;
 			}
 			if(speedy < 0){
-				if(speedy + ACCELERATION/2*(int)averagedelta >= 0)
+				if(speedy + ACCELERATION/2 >= 0)
 					speedy = 0;
 				else
-					speedy += ACCELERATION/2*(int)averagedelta;
+					speedy += ACCELERATION/2;
 			}
 		}
 		else if(input.isKeyDown(Input.KEY_W)){
 			if(speedy >= -MAXSPEED)
-				speedy -= ACCELERATION*(int)averagedelta;
+				speedy -= ACCELERATION;
 			if(speedx > 0){
-				if(speedx - ACCELERATION/2*(int)averagedelta <= 0)
+				if(speedx - ACCELERATION/2 <= 0)
 					speedx = 0;
 				else
-					speedx -= ACCELERATION/2*(int)averagedelta;
+					speedx -= ACCELERATION/2;
 			}
 			if(speedx < 0){
-				if(speedx + ACCELERATION/2*(int)averagedelta >= 0)
+				if(speedx + ACCELERATION/2 >= 0)
 					speedx = 0;
 				else
-					speedx += ACCELERATION/2*(int)averagedelta;
+					speedx += ACCELERATION/2;
 			}
 		}
 		else if(input.isKeyDown(Input.KEY_S)){
 			if(speedy <= MAXSPEED)
-				speedy += ACCELERATION*(int)averagedelta;
+				speedy += ACCELERATION;
 			if(speedx > 0){
-				if(speedx - ACCELERATION/2*(int)averagedelta <= 0)
+				if(speedx - ACCELERATION/2 <= 0)
 					speedx = 0;
 				else
-					speedx -= ACCELERATION/2*(int)averagedelta;
+					speedx -= ACCELERATION/2;
 			}
 			if(speedx < 0){
-				if(speedx + ACCELERATION/2*(int)averagedelta >= 0)
+				if(speedx + ACCELERATION/2 >= 0)
 					speedx = 0;
 				else
-					speedx += ACCELERATION/2*(int)averagedelta;
+					speedx += ACCELERATION/2;
 			}
 		}
 		else{
-			slowDown((int)averagedelta);
+			slowDown();
 		}
 		
 		//Position is updated according to speed
-		if(x + speedx >= 0 && x+speedx <= max_x - charsprite.getWidth())
-			x += speedx;
-		if(y + speedy >= 0 && y+speedy <= max_y - charsprite.getHeight())
-			y += speedy;
+		if(x + speedx*averagedelta >= 0 && x+speedx*averagedelta <= max_x - charsprite.getWidth())
+			x += speedx*averagedelta;
+		if(y + speedy*averagedelta >= 0 && y+speedy*averagedelta <= max_y - charsprite.getHeight())
+			y += speedy*averagedelta;
 	}
 	
 	//Method to slow down when no keys are pressed
-	public void slowDown(int delta){
+	public void slowDown(){
 		if(speedx > 0){
-			if(speedx - ACCELERATION/2*delta <= 0)
+			if(speedx - ACCELERATION/2 <= 0)
 				speedx = 0;
 			else
-				speedx -= ACCELERATION/2*delta;
+				speedx -= ACCELERATION/2;
 		}
 		if(speedx < 0){
-			if(speedx + ACCELERATION/2*delta >= 0)
+			if(speedx + ACCELERATION/2 >= 0)
 				speedx = 0;
 			else
-				speedx += ACCELERATION/2*delta;
+				speedx += ACCELERATION/2;
 		}
 		if(speedy > 0){
-			if(speedy - ACCELERATION/2*delta <= 0)
+			if(speedy - ACCELERATION/2 <= 0)
 				speedy = 0;
 			else
-				speedy -= ACCELERATION/2*delta;
+				speedy -= ACCELERATION/2;
 		}
 		if(speedy < 0){
-			if(speedy + ACCELERATION/2*delta >= 0)
+			if(speedy + ACCELERATION/2 >= 0)
 				speedy = 0;
 			else
-				speedy += ACCELERATION/2*delta;
+				speedy += ACCELERATION/2;
 		}
 	}
 	

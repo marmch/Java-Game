@@ -6,8 +6,14 @@ import entities.*;
 
 public class Blob1 extends Enemy {
 	
-	final int MAXDASH = 100;
-	int dash = 0;
+	final int DASHTIME = 500;
+	final int DASHCOOLDOWN = 1000;
+	final float MAXSPEED = 0.7f;  //Maximum speed
+	final float ACCELERATION = 0.003f;  //Acceleration rate
+	float speedx = 0;
+	float speedy = 0;
+	int dashtimer = 0;
+	int dashcooltimer = 0;
 	
 	public Blob1(String type, String color, int x, int y) throws SlickException {
 		super(type, color, x, y);
@@ -27,22 +33,60 @@ public class Blob1 extends Enemy {
 			averagedelta /= deltanum;
 		}
 		
-		/*
-		if(dash > 0)
-			dash--;
-		else{
-			dash = MAXDASH;
+		
+		if(dashcooltimer > 0){
+			slowDown();
+			dashcooltimer-= averagedelta;
 		}
-		*/
+		else{
+			if(dashtimer > 0){
+				dash(averagedelta);
+				dashtimer-= averagedelta;
+			}
+			else{
+				dashcooltimer = DASHCOOLDOWN;
+				dashtimer = DASHTIME;
+			}
+		}
+		
 		super.rotateTowards(main);
 	}
-
-	/*
-	 *  So how blob 1 is gonna work is
-	 * It will dash at you a certain distance
-	 * And that dash will be relatively fast
-	 * Then it will stop for like 1 or 2 seconds
-	 * And then dash at you again
-	 * 
-	 */
+	
+	void dash(int delta){
+		float angle = super.enemy.getRotation();
+		if(Math.abs(speedx) <= MAXSPEED)
+			speedx += Math.cos(Math.toRadians(angle)) * ACCELERATION / Math.sqrt(2);
+		if(Math.abs(speedy) <= MAXSPEED)
+			speedy += Math.sin(Math.toRadians(angle)) * ACCELERATION / Math.sqrt(2);
+		
+		x += speedx * averagedelta;
+		y += speedy * averagedelta;
+	}
+	
+	public void slowDown(){
+		if(speedx > 0){
+			if(speedx - ACCELERATION/2 <= 0)
+				speedx = 0;
+			else
+				speedx -= ACCELERATION/2;
+		}
+		if(speedx < 0){
+			if(speedx + ACCELERATION/2 >= 0)
+				speedx = 0;
+			else
+				speedx += ACCELERATION/2;
+		}
+		if(speedy > 0){
+			if(speedy - ACCELERATION/2 <= 0)
+				speedy = 0;
+			else
+				speedy -= ACCELERATION/2;
+		}
+		if(speedy < 0){
+			if(speedy + ACCELERATION/2 >= 0)
+				speedy = 0;
+			else
+				speedy += ACCELERATION/2;
+		}
+	}
 }

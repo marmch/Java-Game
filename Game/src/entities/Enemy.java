@@ -9,10 +9,12 @@ public class Enemy {
 	public float x;
 	public float y;
 	public float rotation = 0;
+	final float MAXSPEED = 0.5f;  //Maximum speed
+	final float ACCELERATION = 0.002f;  //Acceleration rate
 	protected int dcounter = 0;
 	protected int deltanum = 0;
 	protected int averagedelta = 0;
-	Image enemy;
+	protected Image enemy;
 	
 	public Enemy(String type, String color, float x, float y) throws SlickException{
 		this.type = type;
