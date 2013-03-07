@@ -82,6 +82,15 @@ public class PlayState extends BasicGameState {
 		for(Enemy enemy : enemies){
 			if(enemy.getType().equals("blob1"))
 				((Blob1)enemy).move(main, delta);
+			else if(enemy.getType().equals("blob2")){
+				((Blob2)enemy).move(delta);
+				if(((Blob2)enemy).bulletdelta > 0)
+					((Blob2)enemy).bulletdelta-= delta;
+				if(((Blob2)enemy).bulletdelta <= 0){
+					bulletList.add(((Blob2)enemy).spawnBullet(main, bulletsprite));
+					((Blob2)enemy).bulletdelta = ((Blob2)enemy).BULLETDELAY;
+				}
+			}
 			else if(enemy.getType().equals("blob3")){
 				((Blob3)enemy).move(main, delta);
 				if(((Blob3)enemy).bulletdelta > 0)

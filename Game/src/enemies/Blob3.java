@@ -12,26 +12,12 @@ public class Blob3 extends Enemy {
 	public int bulletdelta = 0;
 	float speedx = 0;
 	float speedy = 0;
-	int dashtimer = 0;
-	int dashcooltimer = 0;
 	
 	public Blob3(String type, String color, int x, int y) throws SlickException {
 		super(type, color, x, y);
 	}
 	
 	public void move(MainChar main, int delta){
-		//This seems to help with lag jumps
-		dcounter++;
-		if(dcounter/1000000 > 0){
-			deltanum = 0;
-			dcounter = 0;
-		}
-		if(deltanum < 10000){
-			averagedelta *= deltanum;
-			averagedelta += delta;
-			deltanum++;
-			averagedelta /= deltanum;
-		}
 		
 		
 		super.rotateTowards(main);
@@ -39,8 +25,8 @@ public class Blob3 extends Enemy {
 		speedx = (float) (Math.cos(Math.toRadians(angle)) * MAXSPEED);
 		speedy = (float) (Math.sin(Math.toRadians(angle)) * MAXSPEED);
 		
-		x += speedx * averagedelta;
-		y += speedy * averagedelta;
+		x += speedx * delta;
+		y += speedy * delta;
 	}
 	
 	public Bullet spawnBullet(Image bulletsprite){

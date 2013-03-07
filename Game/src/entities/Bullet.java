@@ -9,9 +9,6 @@ public class Bullet {
 	float speedy = 0;
 	float angle;
 	float speed = 1f;
-	int dcounter = 0;
-	int deltanum = 0;
-	int averagedelta = 0;
 	
 	public Bullet(Image bullet, float x, float y, float speed, float angle){
 		this.bullet = bullet;
@@ -22,22 +19,10 @@ public class Bullet {
 	}
 	
 	public void move(int delta){
-		//This seems to help with lag jumps
-		dcounter++;
-		if(dcounter/1000000 > 0){
-			deltanum = 0;
-			dcounter = 0;
-		}
-		if(deltanum < 10000){
-			averagedelta *= deltanum;
-			averagedelta += delta;
-			deltanum++;
-			averagedelta /= deltanum;
-		}
-		speedx = (float) Math.cos(Math.toRadians(angle)) * speed * averagedelta;
-		speedy = (float) Math.sin(Math.toRadians(angle)) * speed * averagedelta;
-		x += speedx;
-		y += speedy;
+		speedx = (float) Math.cos(Math.toRadians(angle)) * speed;
+		speedy = (float) Math.sin(Math.toRadians(angle)) * speed;
+		x += speedx * delta;
+		y += speedy * delta;
 	}
 	
 	public boolean outOfMap(int max_x, int max_y){

@@ -11,9 +11,6 @@ public class Enemy {
 	public float rotation = 0;
 	final float MAXSPEED = 0.5f;  //Maximum speed
 	final float ACCELERATION = 0.002f;  //Acceleration rate
-	protected int dcounter = 0;
-	protected int deltanum = 0;
-	protected int averagedelta = 0;
 	protected Image enemy;
 	
 	public Enemy(String type, String color, float x, float y) throws SlickException{
@@ -22,6 +19,8 @@ public class Enemy {
 		this.x = x;
 		this.y = y;
 		if(type.equals("blob1"))
+			enemy = new Image("img\\blob3blue.png");
+		else if(type.equals("blob2"))
 			enemy = new Image("img\\blob3blue.png");
 		else if(type.equals("blob3"))
 			enemy = new Image("img\\blob3blue.png");

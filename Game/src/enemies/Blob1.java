@@ -6,7 +6,7 @@ import entities.*;
 
 public class Blob1 extends Enemy {
 	
-	final int DASHTIME = 500;
+	final int DASHTIME = 1000;
 	final int DASHCOOLDOWN = 1000;
 	final float MAXSPEED = 0.7f;  //Maximum speed
 	final float ACCELERATION = 0.003f;  //Acceleration rate
@@ -20,28 +20,15 @@ public class Blob1 extends Enemy {
 	}
 	
 	public void move(MainChar main, int delta){
-		//This seems to help with lag jumps
-		dcounter++;
-		if(dcounter/1000000 > 0){
-			deltanum = 0;
-			dcounter = 0;
-		}
-		if(deltanum < 10000){
-			averagedelta *= deltanum;
-			averagedelta += delta;
-			deltanum++;
-			averagedelta /= deltanum;
-		}
-		
 		
 		if(dashcooltimer > 0){
 			slowDown();
-			dashcooltimer-= averagedelta;
+			dashcooltimer-= delta;
 		}
 		else{
 			if(dashtimer > 0){
-				dash(averagedelta);
-				dashtimer-= averagedelta;
+				dash(delta);
+				dashtimer-= delta;
 			}
 			else{
 				dashcooltimer = DASHCOOLDOWN;
@@ -59,8 +46,8 @@ public class Blob1 extends Enemy {
 		if(Math.abs(speedy) <= MAXSPEED)
 			speedy += Math.sin(Math.toRadians(angle)) * ACCELERATION / Math.sqrt(2);
 		
-		x += speedx * averagedelta;
-		y += speedy * averagedelta;
+		x += speedx * delta;
+		y += speedy * delta;
 	}
 	
 	public void slowDown(){

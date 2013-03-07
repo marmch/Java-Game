@@ -1,4 +1,4 @@
 <level>
-	<enemy type="blob3" color="red" x="400" y="200" />
+	<enemy type="blob2" color="red" x="400" y="200" />
 <!--<enemy type="blob2" color="blue" x="200" y="500" />-->
 </level>

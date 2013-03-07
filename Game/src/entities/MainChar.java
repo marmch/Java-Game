@@ -10,14 +10,11 @@ public class MainChar {
 	final float MAXSPEED = 0.3f;  //Maximum speed
 	final float ACCELERATION = 0.002f;  //Acceleration rate
 	public final int BULLETDELAY = 400;
-	public int bulletdelta = 0;
 	public float x;
 	public float y;
 	float speedx = 0;
 	float speedy = 0;
-	float averagedelta = 0;
-	int  deltanum = 0;
-	int dcounter = 0;
+	public int bulletdelta = 0;
 	
 	public MainChar(Image mainchar, int x, int y) throws SlickException{  //(x,y) are starting coordinates
 		charsprite = mainchar;
@@ -31,17 +28,19 @@ public class MainChar {
 	
 	public void move(Input input, int delta, int max_x, int max_y){
 		//This seems to help with lag jumps
+		/*
 		dcounter++;
 		if(dcounter/1000000 > 0){
 			deltanum = 0;
 			dcounter = 0;
 		}
 		if(deltanum < 10000){
-			averagedelta *= deltanum;
-			averagedelta += delta;
+			delta *= deltanum;
+			delta += delta;
 			deltanum++;
-			averagedelta /= deltanum;
+			delta /= deltanum;
 		}
+		*/
 		
 		//Key input adds acceleration value to speed
 		if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_D)){
@@ -143,10 +142,10 @@ public class MainChar {
 		}
 		
 		//Position is updated according to speed
-		if(x + speedx*averagedelta >= 0 && x+speedx*averagedelta <= max_x - charsprite.getWidth())
-			x += speedx*averagedelta;
-		if(y + speedy*averagedelta >= 0 && y+speedy*averagedelta <= max_y - charsprite.getHeight())
-			y += speedy*averagedelta;
+		if(x + speedx*delta >= 0 && x+speedx*delta <= max_x - charsprite.getWidth())
+			x += speedx*delta;
+		if(y + speedy*delta >= 0 && y+speedy*delta <= max_y - charsprite.getHeight())
+			y += speedy*delta;
 	}
 	
 	//Method to slow down when no keys are pressed
