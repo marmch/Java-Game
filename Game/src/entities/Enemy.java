@@ -24,6 +24,8 @@ public class Enemy {
 			enemy = new Image("img\\blob3blue.png");
 		else if(type.equals("blob3"))
 			enemy = new Image("img\\blob3blue.png");
+		else if(type.equals("blob4"))
+			enemy = new Image("img\\blob3blue.png");
 	}
 	
 	public String getType(){

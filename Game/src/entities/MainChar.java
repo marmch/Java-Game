@@ -8,8 +8,9 @@ public class MainChar {
 	
 	public Image charsprite;
 	final float MAXSPEED = 0.3f;  //Maximum speed
-	final float ACCELERATION = 0.002f;  //Acceleration rate
+	final float ACCELERATION = 0.001f;  //Acceleration rate
 	public final int BULLETDELAY = 400;
+	float scaledAccel;
 	public float x;
 	public float y;
 	float speedx = 0;
@@ -42,6 +43,8 @@ public class MainChar {
 		}
 		*/
 		
+		scaledAccel = ACCELERATION * delta;
+		
 		//Key input adds acceleration value to speed
 		if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_D)){
 			slowDown();
@@ -51,90 +54,90 @@ public class MainChar {
 		}
 		else if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_W)){
 			if(speedx >= -MAXSPEED)
-				speedx -= ACCELERATION/Math.sqrt(2);
+				speedx -= scaledAccel/Math.sqrt(2);
 			if(speedy >= -MAXSPEED)
-				speedy -= ACCELERATION/Math.sqrt(2);
+				speedy -= scaledAccel/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_D) && input.isKeyDown(Input.KEY_W)){
 			if(speedx <= MAXSPEED)
-				speedx += ACCELERATION/Math.sqrt(2);
+				speedx += scaledAccel/Math.sqrt(2);
 			if(speedy >= -MAXSPEED)
-				speedy -= ACCELERATION/Math.sqrt(2);
+				speedy -= scaledAccel/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_S)){
 			if(speedx >= -MAXSPEED)
-				speedx -= ACCELERATION/Math.sqrt(2);
+				speedx -= scaledAccel/Math.sqrt(2);
 			if(speedy <= MAXSPEED)
-				speedy += ACCELERATION/Math.sqrt(2);
+				speedy += scaledAccel/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_D) && input.isKeyDown(Input.KEY_S)){
 			if(speedx <= MAXSPEED)
-				speedx += ACCELERATION/Math.sqrt(2);
+				speedx += scaledAccel/Math.sqrt(2);
 			if(speedy <= MAXSPEED)
-				speedy += ACCELERATION/Math.sqrt(2);
+				speedy += scaledAccel/Math.sqrt(2);
 		}
 		else if(input.isKeyDown(Input.KEY_A)){
 			if(speedx >= -MAXSPEED)
-				speedx -= ACCELERATION;
+				speedx -= scaledAccel;
 			if(speedy > 0){
-				if(speedy - ACCELERATION/2 <= 0)
+				if(speedy - scaledAccel/2 <= 0)
 					speedy = 0;
 				else
-					speedy -= ACCELERATION/2;
+					speedy -= scaledAccel/2;
 			}
 			if(speedy < 0){
-				if(speedy + ACCELERATION/2 >= 0)
+				if(speedy + scaledAccel/2 >= 0)
 					speedy = 0;
 				else
-					speedy += ACCELERATION/2;
+					speedy += scaledAccel/2;
 			}
 		}
 		else if(input.isKeyDown(Input.KEY_D)){
 			if(speedx <= MAXSPEED)
-				speedx += ACCELERATION;
+				speedx += scaledAccel;
 			if(speedy > 0){
-				if(speedy - ACCELERATION/2 <= 0)
+				if(speedy - scaledAccel/2 <= 0)
 					speedy = 0;
 				else
-					speedy -= ACCELERATION/2;
+					speedy -= scaledAccel/2;
 			}
 			if(speedy < 0){
-				if(speedy + ACCELERATION/2 >= 0)
+				if(speedy + scaledAccel/2 >= 0)
 					speedy = 0;
 				else
-					speedy += ACCELERATION/2;
+					speedy += scaledAccel/2;
 			}
 		}
 		else if(input.isKeyDown(Input.KEY_W)){
 			if(speedy >= -MAXSPEED)
-				speedy -= ACCELERATION;
+				speedy -= scaledAccel;
 			if(speedx > 0){
-				if(speedx - ACCELERATION/2 <= 0)
+				if(speedx - scaledAccel/2 <= 0)
 					speedx = 0;
 				else
-					speedx -= ACCELERATION/2;
+					speedx -= scaledAccel/2;
 			}
 			if(speedx < 0){
-				if(speedx + ACCELERATION/2 >= 0)
+				if(speedx + scaledAccel/2 >= 0)
 					speedx = 0;
 				else
-					speedx += ACCELERATION/2;
+					speedx += scaledAccel/2;
 			}
 		}
 		else if(input.isKeyDown(Input.KEY_S)){
 			if(speedy <= MAXSPEED)
-				speedy += ACCELERATION;
+				speedy += scaledAccel;
 			if(speedx > 0){
-				if(speedx - ACCELERATION/2 <= 0)
+				if(speedx - scaledAccel/2 <= 0)
 					speedx = 0;
 				else
-					speedx -= ACCELERATION/2;
+					speedx -= scaledAccel/2;
 			}
 			if(speedx < 0){
-				if(speedx + ACCELERATION/2 >= 0)
+				if(speedx + scaledAccel/2 >= 0)
 					speedx = 0;
 				else
-					speedx += ACCELERATION/2;
+					speedx += scaledAccel/2;
 			}
 		}
 		else{
@@ -151,28 +154,28 @@ public class MainChar {
 	//Method to slow down when no keys are pressed
 	public void slowDown(){
 		if(speedx > 0){
-			if(speedx - ACCELERATION/2 <= 0)
+			if(speedx - scaledAccel/2 <= 0)
 				speedx = 0;
 			else
-				speedx -= ACCELERATION/2;
+				speedx -= scaledAccel/2;
 		}
 		if(speedx < 0){
-			if(speedx + ACCELERATION/2 >= 0)
+			if(speedx + scaledAccel/2 >= 0)
 				speedx = 0;
 			else
-				speedx += ACCELERATION/2;
+				speedx += scaledAccel/2;
 		}
 		if(speedy > 0){
-			if(speedy - ACCELERATION/2 <= 0)
+			if(speedy - scaledAccel/2 <= 0)
 				speedy = 0;
 			else
-				speedy -= ACCELERATION/2;
+				speedy -= scaledAccel/2;
 		}
 		if(speedy < 0){
-			if(speedy + ACCELERATION/2 >= 0)
+			if(speedy + scaledAccel/2 >= 0)
 				speedy = 0;
 			else
-				speedy += ACCELERATION/2;
+				speedy += scaledAccel/2;
 		}
 	}
 	
