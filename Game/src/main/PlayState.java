@@ -36,7 +36,7 @@ public class PlayState extends BasicGameState {
 		maincharsprite = new Image("img\\blob3blue.png");
 		bulletsprite = new Image("img\\greenbullet.png");
 		enemysprite = new Image("img\\blob3blue.png");
-		main = new MainChar(maincharsprite,0,0); //Spawn main character
+		main = new MainChar(maincharsprite,800,600); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
 		hbulletList = new ArrayList<HomingBullet>();
 	}
@@ -78,6 +78,7 @@ public class PlayState extends BasicGameState {
 		for(int i = 0; i < hbulletList.size(); i++){
 			hbulletList.get(i).move(main, delta);
 			if(hbulletList.get(i).outOfMap(max_x, max_y)){
+				System.out.println("WAH");
 				hbulletList.remove(i);
 				i--;
 			}

@@ -4,8 +4,8 @@ import org.newdawn.slick.Image;
 
 public class HomingBullet extends Bullet {
 	
-	final float HOMING = 0.01f;
-	final float ACCELERATION = 0.002f;  //Acceleration rate
+	final float HOMING = 0.0001f;
+	final float ACCELERATION = 5f;  //Acceleration rate
 
 	public HomingBullet(Image bullet, float x, float y, float speed, float angle) {
 		super(bullet, x, y, speed, angle);
@@ -13,13 +13,28 @@ public class HomingBullet extends Bullet {
 	}
 	
 	public void move(MainChar main, int delta){
+		if(delta != 1)
+			return;
 		rotateTowards(main);
 		float scaledAccel = ACCELERATION * delta;
 		float angle = bullet.getRotation();
-		if(Math.abs(speedx) <= speed)
-			speedx += Math.cos(Math.toRadians(angle)) * scaledAccel / Math.sqrt(2);
-		if(Math.abs(speedy) <= speed)
-			speedy += Math.sin(Math.toRadians(angle)) * scaledAccel / Math.sqrt(2);
+		float cosa = (float) Math.cos(Math.toRadians(angle));
+		float sina = (float) Math.sin(Math.toRadians(angle));
+		
+		float r1 = speed;
+		speedx += cosa * scaledAccel;
+		speedy += sina * scaledAccel;
+		float r2 = (float) Math.sqrt(speedx*speedx + speedy*speedy);
+		float k = r1/r2;
+		
+		speedx *= k*k;
+		speedy *= k*k;
+		
+		//System.out.println("SPEED " + speedx + "," + speedy);
+		System.out.println("R " + r1 + "," + r2);
+		//System.out.println(delta + "," + ACCELERATION);
+		//System.out.println(r1);
+		//System.out.println(x + "," + y);
 		
 		x += speedx * delta;
 		y += speedy * delta;
@@ -41,6 +56,14 @@ public class HomingBullet extends Bullet {
 		else
 			arctan = 0;
 		
-		bullet.rotate(arctan - bullet.getRotation());
+		float rotation = arctan - bullet.getRotation();
+		float newrotation;
+		if(rotation >= 0)
+			newrotation = Math.min(HOMING, rotation);
+		else
+			newrotation = Math.min(-HOMING, rotation);
+		
+		
+		bullet.rotate(newrotation);
 	}
 }
