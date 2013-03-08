@@ -12,6 +12,7 @@ public class Blob2 extends Enemy {
 	float angle;
 	final float MAXSPEED = 0.01f;  //Maximum speed
 	public final int BULLETDELAY = 800;
+	final float ROTATESPEED = 0.2f; 
 	public int bulletdelta = 0;
 	float speedx;
 	float speedy;
@@ -22,7 +23,7 @@ public class Blob2 extends Enemy {
 	}
 	
 	public void move(int delta){
-		enemy.rotate(1f);
+		enemy.rotate(ROTATESPEED*delta);
 		speedx = (float) (Math.cos(Math.toRadians(angle)) * MAXSPEED) * delta;
 		speedy = (float) (Math.sin(Math.toRadians(angle)) * MAXSPEED) * delta;
 		

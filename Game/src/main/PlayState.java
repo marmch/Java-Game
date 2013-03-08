@@ -11,6 +11,7 @@ public class PlayState extends BasicGameState {
 	int stateID;
 	MainChar main;
 	ArrayList<Bullet> bulletList;
+	ArrayList<HomingBullet> hbulletList;
 	ArrayList<Enemy> enemies;
 	Image maincharsprite;
 	Image bulletsprite;
@@ -37,6 +38,7 @@ public class PlayState extends BasicGameState {
 		enemysprite = new Image("img\\blob3blue.png");
 		main = new MainChar(maincharsprite,0,0); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
+		hbulletList = new ArrayList<HomingBullet>();
 	}
 
 	@Override
@@ -45,6 +47,10 @@ public class PlayState extends BasicGameState {
 		
 		//Render bullets
 		for(Bullet bullet : bulletList)
+			bullet.draw();
+		
+		//Render homing bullets
+		for(HomingBullet bullet : hbulletList)
 			bullet.draw();
 		
 		//Render enemies
@@ -64,6 +70,15 @@ public class PlayState extends BasicGameState {
 			bulletList.get(i).move(delta);
 			if(bulletList.get(i).outOfMap(max_x, max_y)){
 				bulletList.remove(i);
+				i--;
+			}
+		}
+		
+		//Move homing bullets
+		for(int i = 0; i < hbulletList.size(); i++){
+			hbulletList.get(i).move(main, delta);
+			if(hbulletList.get(i).outOfMap(max_x, max_y)){
+				hbulletList.remove(i);
 				i--;
 			}
 		}
@@ -89,6 +104,15 @@ public class PlayState extends BasicGameState {
 				if(((Blob2)enemy).bulletdelta <= 0){
 					bulletList.add(((Blob2)enemy).spawnBullet(main, bulletsprite));
 					((Blob2)enemy).bulletdelta = ((Blob2)enemy).BULLETDELAY;
+				}
+			}
+			else if(enemy.getType().equals("blob3")){
+				((Blob3)enemy).move(delta);
+				if(((Blob3)enemy).bulletdelta > 0)
+					((Blob3)enemy).bulletdelta-= delta;
+				if(((Blob3)enemy).bulletdelta <= 0){
+					hbulletList.add(((Blob3)enemy).spawnBullet(main, bulletsprite));
+					((Blob3)enemy).bulletdelta = ((Blob3)enemy).BULLETDELAY;
 				}
 			}
 			else if(enemy.getType().equals("blob4")){
