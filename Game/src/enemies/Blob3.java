@@ -3,6 +3,7 @@ package enemies;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import entities.Bullet;
 import entities.Enemy;
 import entities.HomingBullet;
 import entities.MainChar;
@@ -46,6 +47,6 @@ public class Blob3 extends Enemy {
 		else
 			arctan = 0;
 
-		return new HomingBullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,0.05f,arctan);
+		return new HomingBullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,0.1f,arctan);
 	}
 }

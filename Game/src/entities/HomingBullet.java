@@ -5,15 +5,30 @@ import org.newdawn.slick.Image;
 public class HomingBullet extends Bullet {
 	
 	final float HOMING = 0.01f;
+	final float ACCELERATION = 0.002f;  //Acceleration rate
 
 	public HomingBullet(Image bullet, float x, float y, float speed, float angle) {
 		super(bullet, x, y, speed, angle);
+		bullet.rotate(angle);
 	}
 	
 	public void move(MainChar main, int delta){
+		rotateTowards(main);
+		float scaledAccel = ACCELERATION * delta;
+		float angle = bullet.getRotation();
+		if(Math.abs(speedx) <= speed)
+			speedx += Math.cos(Math.toRadians(angle)) * scaledAccel / Math.sqrt(2);
+		if(Math.abs(speedy) <= speed)
+			speedy += Math.sin(Math.toRadians(angle)) * scaledAccel / Math.sqrt(2);
 		
-		float dx = x + bullet.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
-		float dy = y + bullet.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
+		x += speedx * delta;
+		y += speedy * delta;
+		
+	}
+	
+	public void rotateTowards(MainChar obj){
+		float dx = x + bullet.getWidth()/2 - obj.x - obj.charsprite.getWidth()/2;
+		float dy = y + bullet.getHeight()/2 - obj.y - obj.charsprite.getHeight()/2;
 		float arctan;
 		if(dy > 0 && dx > 0 || dy < 0 && dx > 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx)) + 180;
@@ -26,17 +41,6 @@ public class HomingBullet extends Bullet {
 		else
 			arctan = 0;
 		
-		float rotation = arctan - angle;
-		
-		if(rotation >= 0)
-			angle += Math.min(rotation, HOMING);
-		else
-			angle -= Math.max(rotation, -HOMING);
-		
-		System.out.println(arctan);
-		bullet.rotate(angle);
-		
-		x += Math.cos(Math.toRadians(bullet.getRotation())) * speed * delta;
-		y +=  Math.sin(Math.toRadians(bullet.getRotation())) * speed * delta;
+		bullet.rotate(arctan - bullet.getRotation());
 	}
 }

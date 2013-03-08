@@ -8,7 +8,7 @@ public class Bullet {
 	float speedx = 0;
 	float speedy = 0;
 	float angle;
-	float speed = 1f;
+	float speed;
 	
 	public Bullet(Image bullet, float x, float y, float speed, float angle){
 		this.bullet = bullet;
