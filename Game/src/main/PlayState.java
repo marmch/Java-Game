@@ -3,6 +3,8 @@ package main;
 import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+
+import bullets.*;
 import enemies.*;
 import entities.*;
 
@@ -13,7 +15,6 @@ public class PlayState extends BasicGameState {
 	Image maincharsprite; //Main character sprite
 	ArrayList<Bullet> bulletList; //Bullet array
 	String bulletsprite; //Bullet sprite location
-	ArrayList<HomingBullet> hbulletList; //Homing bullet array
 	String hbulletsprite; //Homing bullet sprite location
 	ArrayList<Enemy> enemies; //Enemy array
 	Image enemysprite; //Enemy sprite
@@ -40,7 +41,6 @@ public class PlayState extends BasicGameState {
 		enemysprite = new Image("img\\blob3blue.png");
 		main = new MainChar(maincharsprite,800,600); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
-		hbulletList = new ArrayList<HomingBullet>();
 	}
 
 	@Override
@@ -49,10 +49,6 @@ public class PlayState extends BasicGameState {
 		
 		//Render bullets
 		for(Bullet bullet : bulletList)
-			bullet.draw();
-		
-		//Render homing bullets
-		for(HomingBullet bullet : hbulletList)
 			bullet.draw();
 		
 		//Render enemies
@@ -69,18 +65,12 @@ public class PlayState extends BasicGameState {
 		
 		//Move bullets
 		for(int i = 0; i < bulletList.size(); i++){
-			bulletList.get(i).move(delta);
+			if(bulletList.get(i).type.equals("normal"))
+				((NormalBullet)bulletList.get(i)).move(delta);
+			else if(bulletList.get(i).type.endsWith("homing"))
+				((HomingBullet)bulletList.get(i)).move(main, delta);
 			if(bulletList.get(i).outOfMap(max_x, max_y)){
 				bulletList.remove(i);
-				i--;
-			}
-		}
-		
-		//Move homing bullets
-		for(int i = 0; i < hbulletList.size(); i++){
-			hbulletList.get(i).move(main, delta);
-			if(hbulletList.get(i).outOfMap(max_x, max_y)){
-				hbulletList.remove(i);
 				i--;
 			}
 		}
@@ -116,7 +106,7 @@ public class PlayState extends BasicGameState {
 				if(((Blob3)enemy).bulletdelta > 0)
 					((Blob3)enemy).bulletdelta-= delta;
 				if(((Blob3)enemy).bulletdelta <= 0){
-					hbulletList.add(((Blob3)enemy).spawnBullet(main, hbulletsprite));
+					bulletList.add(((Blob3)enemy).spawnBullet(main, hbulletsprite));
 					((Blob3)enemy).bulletdelta = ((Blob3)enemy).BULLETDELAY;
 				}
 			}

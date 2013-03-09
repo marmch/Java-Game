@@ -2,6 +2,8 @@ package enemies;
 
 import org.newdawn.slick.SlickException;
 
+import bullets.NormalBullet;
+
 import entities.Bullet;
 import entities.Enemy;
 import entities.MainChar;
@@ -52,6 +54,7 @@ public class Blob2 extends Enemy {
 			arctan = 0;
 		
 		//Spawn bullet
-		return new Bullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan);
+		Bullet b = new NormalBullet("normal", bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan,false);
+		return b;
 	}
 }

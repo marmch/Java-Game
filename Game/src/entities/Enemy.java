@@ -4,8 +4,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Enemy {
-	final float MAXSPEED = 0.5f;  //Maximum speed
-	final float ACCELERATION = 0.002f;  //Acceleration rate
 	String color; //Enemy color
 	public String type; //Enemy type
 	public Image enemy; //Enemy sprite

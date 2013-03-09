@@ -4,6 +4,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+import bullets.NormalBullet;
+
 public class MainChar {
 	
 	final float MAXSPEED = 0.3f; //Maximum speed
@@ -204,6 +206,7 @@ public class MainChar {
 	}
 	
 	public Bullet spawnBullet(String bulletsprite) throws SlickException{
-		return new Bullet(bulletsprite,x + charsprite.getWidth()/2,y + charsprite.getHeight()/2,BULLETSPEED,charsprite.getRotation());
+		Bullet b = new NormalBullet("normal", bulletsprite,x + charsprite.getWidth()/2,y + charsprite.getHeight()/2,BULLETSPEED,charsprite.getRotation(), true);
+		return b;
 	}
 }

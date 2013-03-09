@@ -2,8 +2,10 @@ package enemies;
 
 import org.newdawn.slick.SlickException;
 
+import bullets.HomingBullet;
+
+import entities.Bullet;
 import entities.Enemy;
-import entities.HomingBullet;
 import entities.MainChar;
 
 public class Blob3 extends Enemy {
@@ -34,7 +36,7 @@ public class Blob3 extends Enemy {
 		y += speedy * delta;
 	}
 	
-	public HomingBullet spawnBullet(MainChar main, String bulletsprite) throws SlickException{
+	public Bullet spawnBullet(MainChar main, String bulletsprite) throws SlickException{
 		//Calculate angle between blob and main character
 		float dx = x + enemy.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
 		float dy = y + enemy.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
@@ -51,6 +53,7 @@ public class Blob3 extends Enemy {
 			arctan = 0;
 
 		//Spawn homing bullet
-		return new HomingBullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan);
+		Bullet b = new HomingBullet("homing", bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan, false);
+		return b;
 	}
 }

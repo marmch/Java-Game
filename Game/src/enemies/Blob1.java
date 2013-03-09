@@ -14,7 +14,7 @@ public class Blob1 extends Enemy {
 	final float ACCELERATION = 1f; //Acceleration rate
 	float scaledAccel; //Scaled acceleration
 	float angle; //Dash angle
-	int dashtimer = 0; //Dashing timer
+	public int dashtimer = 0; //Dashing timer
 	int dashcooltimer = 0; //Dashing cooldown timer
 	float speedx = 0;
 	float speedy = 0;
@@ -46,6 +46,9 @@ public class Blob1 extends Enemy {
 				dashtimer = DASHTIME;
 			}
 		}
+		
+		
+		
 	}
 	
 	void dash(int delta){
