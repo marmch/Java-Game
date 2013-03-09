@@ -13,8 +13,6 @@ public class HomingBullet extends Bullet {
 	}
 	
 	public void move(MainChar main, int delta){
-		if(delta != 1)
-			return;
 		rotateTowards(main);
 		float scaledAccel = ACCELERATION * delta;
 		float angle = bullet.getRotation();
@@ -27,8 +25,8 @@ public class HomingBullet extends Bullet {
 		float r2 = (float) Math.sqrt(speedx*speedx + speedy*speedy);
 		float k = r1/r2;
 		
-		speedx *= k*k;
-		speedy *= k*k;
+		speedx *= k*k*delta;
+		speedy *= k*k*delta;
 		
 		//System.out.println("SPEED " + speedx + "," + speedy);
 		System.out.println("R " + r1 + "," + r2);
@@ -47,14 +45,16 @@ public class HomingBullet extends Bullet {
 		float arctan;
 		if(dy > 0 && dx > 0 || dy < 0 && dx > 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx)) + 180;
-		else if(dy < 0 && dx <= 0 || dy > 0 && dx <= 0)
+		else if(dy < 0 && dx < 0 || dy > 0 && dx < 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx));
-		else if (x > 0)
+		else if (dx > 0)
 			arctan = 90;
-		else if (x < 0)
+		else if (dx < 0)
 			arctan = -90;
-		else
+		else if (dy > 0)
 			arctan = 0;
+		else
+			arctan = 180;
 		
 		float rotation = arctan - bullet.getRotation();
 		float newrotation;
@@ -63,7 +63,7 @@ public class HomingBullet extends Bullet {
 		else
 			newrotation = Math.min(-HOMING, rotation);
 		
-		
+		System.out.println(newrotation);
 		bullet.rotate(newrotation);
 	}
 }
