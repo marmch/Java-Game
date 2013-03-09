@@ -11,8 +11,8 @@ public class Game extends StateBasedGame{
 	final static int LOADSTATE = 1;
 	final static int PLAYSTATE = 2;
 	final static int PAUSESTATE = 3;
-	final static int RES_X = 1200;
-	final static int RES_Y = 768;
+	final static int RES_X = 1200; //Level width
+	final static int RES_Y = 768; //Level height
 	public static LoadState load;
 	public static PlayState play;
 	

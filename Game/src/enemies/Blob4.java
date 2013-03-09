@@ -1,15 +1,17 @@
 package enemies;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import entities.*;
+import entities.Bullet;
+import entities.Enemy;
+import entities.MainChar;
 
 public class Blob4 extends Enemy {
 	
-	final float MAXSPEED = 0.2f;  //Maximum speed
-	public final int BULLETDELAY = 800;
-	public int bulletdelta = 0;
+	final float MAXSPEED = 0.2f; //Maximum speed
+	public final int BULLETDELAY = 800; //Bullet delay
+	final float BULLETSPEED = 1f; //Bullet speed
+	public int bulletdelta = 0; //Bullet spawn timer
 	float speedx = 0;
 	float speedy = 0;
 	
@@ -18,18 +20,20 @@ public class Blob4 extends Enemy {
 	}
 	
 	public void move(MainChar main, int delta){
-		
-		
 		super.rotateTowards(main);
-		float angle = super.enemy.getRotation();
+		
+		//Calculate speed vector
+		float angle = enemy.getRotation();
 		speedx = (float) (Math.cos(Math.toRadians(angle)) * MAXSPEED);
 		speedy = (float) (Math.sin(Math.toRadians(angle)) * MAXSPEED);
 		
+		//Adjust coordinates
 		x += speedx * delta;
 		y += speedy * delta;
 	}
 	
-	public Bullet spawnBullet(Image bulletsprite){
-		return new Bullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,1f,enemy.getRotation());
+	public Bullet spawnBullet(String bulletsprite) throws SlickException{
+		//Spawn bullet
+		return new Bullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,enemy.getRotation());
 	}
 }

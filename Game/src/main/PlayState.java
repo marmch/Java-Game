@@ -9,14 +9,15 @@ import entities.*;
 public class PlayState extends BasicGameState {
 
 	int stateID;
-	MainChar main;
-	ArrayList<Bullet> bulletList;
-	ArrayList<HomingBullet> hbulletList;
-	ArrayList<Enemy> enemies;
-	Image maincharsprite;
-	Image bulletsprite;
-	Image enemysprite;
-	int max_x, max_y;
+	MainChar main; //Main character
+	Image maincharsprite; //Main character sprite
+	ArrayList<Bullet> bulletList; //Bullet array
+	String bulletsprite; //Bullet sprite location
+	ArrayList<HomingBullet> hbulletList; //Homing bullet array
+	String hbulletsprite; //Homing bullet sprite location
+	ArrayList<Enemy> enemies; //Enemy array
+	Image enemysprite; //Enemy sprite
+	int max_x, max_y; //Level width and height
 	
 	PlayState(int stateID) throws SlickException{
 		this.stateID = stateID;
@@ -34,7 +35,8 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		maincharsprite = new Image("img\\blob3blue.png");
-		bulletsprite = new Image("img\\greenbullet.png");
+		bulletsprite ="img\\greenbullet.png";
+		hbulletsprite = "img\\greenbullet.png";
 		enemysprite = new Image("img\\blob3blue.png");
 		main = new MainChar(maincharsprite,800,600); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
@@ -65,7 +67,7 @@ public class PlayState extends BasicGameState {
 		
 		main.move(input, delta, max_x, max_y); //Move main character
 		
-		//Move all bullets and despawn old ones
+		//Move bullets
 		for(int i = 0; i < bulletList.size(); i++){
 			bulletList.get(i).move(delta);
 			if(bulletList.get(i).outOfMap(max_x, max_y)){
@@ -78,13 +80,12 @@ public class PlayState extends BasicGameState {
 		for(int i = 0; i < hbulletList.size(); i++){
 			hbulletList.get(i).move(main, delta);
 			if(hbulletList.get(i).outOfMap(max_x, max_y)){
-				System.out.println("WAH");
 				hbulletList.remove(i);
 				i--;
 			}
 		}
 		
-		//Fire bullet after delay
+		//Main character bullet fire
 		if(main.bulletdelta > 0)
 			main.bulletdelta-= delta;
 		if(main.shoot(input) && main.bulletdelta <= 0){
@@ -96,9 +97,11 @@ public class PlayState extends BasicGameState {
 		
 		//Move enemies
 		for(Enemy enemy : enemies){
-			if(enemy.getType().equals("blob1"))
+			
+			if(enemy.type.equals("blob1"))
 				((Blob1)enemy).move(main, delta);
-			else if(enemy.getType().equals("blob2")){
+			
+			else if(enemy.type.equals("blob2")){
 				((Blob2)enemy).move(delta);
 				if(((Blob2)enemy).bulletdelta > 0)
 					((Blob2)enemy).bulletdelta-= delta;
@@ -107,16 +110,18 @@ public class PlayState extends BasicGameState {
 					((Blob2)enemy).bulletdelta = ((Blob2)enemy).BULLETDELAY;
 				}
 			}
-			else if(enemy.getType().equals("blob3")){
-				((Blob3)enemy).move(delta);
+			
+			else if(enemy.type.equals("blob3")){
+				((Blob3)enemy).move(main, delta);
 				if(((Blob3)enemy).bulletdelta > 0)
 					((Blob3)enemy).bulletdelta-= delta;
 				if(((Blob3)enemy).bulletdelta <= 0){
-					hbulletList.add(((Blob3)enemy).spawnBullet(main, bulletsprite));
+					hbulletList.add(((Blob3)enemy).spawnBullet(main, hbulletsprite));
 					((Blob3)enemy).bulletdelta = ((Blob3)enemy).BULLETDELAY;
 				}
 			}
-			else if(enemy.getType().equals("blob4")){
+			
+			else if(enemy.type.equals("blob4")){
 				((Blob4)enemy).move(main, delta);
 				if(((Blob4)enemy).bulletdelta > 0)
 					((Blob4)enemy).bulletdelta-= delta;

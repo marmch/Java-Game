@@ -2,55 +2,75 @@ package enemies;
 
 import org.newdawn.slick.SlickException;
 
-import entities.*;
+import entities.Enemy;
+import entities.MainChar;
+
 
 public class Blob1 extends Enemy {
 	
-	final int DASHTIME = 500;
-	final int DASHCOOLDOWN = 500;
-	final float MAXSPEED = 0.7f;  //Maximum speed
-	final float ACCELERATION = 0.002f;  //Acceleration rate
-	float scaledAccel;
+	final int DASHTIME = 500; //Time spent dashing
+	final int DASHCOOLDOWN = 500; //Cooldown on dash
+	final float MAXSPEED = 1.2f; //Maximum speed
+	final float ACCELERATION = 1f; //Acceleration rate
+	float scaledAccel; //Scaled acceleration
+	float angle; //Dash angle
+	int dashtimer = 0; //Dashing timer
+	int dashcooltimer = 0; //Dashing cooldown timer
 	float speedx = 0;
 	float speedy = 0;
-	int dashtimer = 0;
-	int dashcooltimer = 0;
 	
 	public Blob1(String type, String color, int x, int y) throws SlickException {
 		super(type, color, x, y);
+		angle = enemy.getRotation();
 	}
 	
 	public void move(MainChar main, int delta){
-		scaledAccel = ACCELERATION * delta;
+		scaledAccel = delta / ACCELERATION; //Scale acceleration
+		rotateTowards(main);
+		
 		if(dashcooltimer > 0){
+			//Dash is on cooldown; decrement cooldown timer and calculate new angle
 			slowDown();
 			dashcooltimer-= delta;
+			angle = enemy.getRotation();
 		}
 		else{
 			if(dashtimer > 0){
+				//Dashing
 				dash(delta);
 				dashtimer-= delta;
 			}
 			else{
+				//Reset timers
 				dashcooltimer = DASHCOOLDOWN;
 				dashtimer = DASHTIME;
 			}
 		}
-		
-		super.rotateTowards(main);
 	}
 	
 	void dash(int delta){
-		float angle = super.enemy.getRotation();
-		if(Math.abs(speedx) <= MAXSPEED)
-			speedx += Math.cos(Math.toRadians(angle)) * scaledAccel / Math.sqrt(2);
-		if(Math.abs(speedy) <= MAXSPEED)
-			speedy += Math.sin(Math.toRadians(angle)) * scaledAccel / Math.sqrt(2);
+		float cosa = (float) Math.cos(Math.toRadians(angle));
+		float sina = (float) Math.sin(Math.toRadians(angle));
+		float r1 = MAXSPEED;
 		
+		//Calculate speed vector
+		speedx += cosa * scaledAccel;
+		speedy += sina * scaledAccel;
+		
+		//Calculate scaling coefficient
+		float r2 = (float) Math.sqrt(speedx*speedx + speedy*speedy);
+		float k = r1/r2;
+		
+		//Scale vector
+		speedx *= k*k*delta;
+		speedy *= k*k*delta;
+		
+		//Adjust coordinates
 		x += speedx * delta;
 		y += speedy * delta;
 	}
 	
+	//Deceleration method
 	public void slowDown(){
 		if(speedx > 0){
 			if(speedx - scaledAccel/2 <= 0)

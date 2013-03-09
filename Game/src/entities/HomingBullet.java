@@ -1,47 +1,47 @@
 package entities;
 
-import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public class HomingBullet extends Bullet {
 	
-	final float HOMING = 0.0001f;
-	final float ACCELERATION = 5f;  //Acceleration rate
+	final float HOMING = 0.05f; //Homing rate
+	final float ACCELERATION = 0.2f;  //Acceleration rate
 
-	public HomingBullet(Image bullet, float x, float y, float speed, float angle) {
+	public HomingBullet(String bullet, float x, float y, float speed, float angle) throws SlickException {
 		super(bullet, x, y, speed, angle);
-		bullet.rotate(angle);
+		super.bullet.rotate(angle);
 	}
 	
 	public void move(MainChar main, int delta){
 		rotateTowards(main);
-		float scaledAccel = ACCELERATION * delta;
-		float angle = bullet.getRotation();
+		float scaledAccel = delta / ACCELERATION; //Scale acceleration
+		float angle = bullet.getRotation(); //Find absolute bullet angle
+		
+		//Calculate speed vector
+		float r1 = speed;
 		float cosa = (float) Math.cos(Math.toRadians(angle));
 		float sina = (float) Math.sin(Math.toRadians(angle));
-		
-		float r1 = speed;
 		speedx += cosa * scaledAccel;
 		speedy += sina * scaledAccel;
+		
+		//Calculate scaling coefficient
 		float r2 = (float) Math.sqrt(speedx*speedx + speedy*speedy);
 		float k = r1/r2;
 		
+		//Scale vector
 		speedx *= k*k*delta;
 		speedy *= k*k*delta;
 		
-		//System.out.println("SPEED " + speedx + "," + speedy);
-		System.out.println("R " + r1 + "," + r2);
-		//System.out.println(delta + "," + ACCELERATION);
-		//System.out.println(r1);
-		//System.out.println(x + "," + y);
-		
+		//Adjust coordinates
 		x += speedx * delta;
 		y += speedy * delta;
 		
 	}
 	
-	public void rotateTowards(MainChar obj){
-		float dx = x + bullet.getWidth()/2 - obj.x - obj.charsprite.getWidth()/2;
-		float dy = y + bullet.getHeight()/2 - obj.y - obj.charsprite.getHeight()/2;
+	public void rotateTowards(MainChar main){
+		//Calculate angle between bullet and main character
+		float dx = x + bullet.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
+		float dy = y + bullet.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
 		float arctan;
 		if(dy > 0 && dx > 0 || dy < 0 && dx > 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx)) + 180;
@@ -56,14 +56,15 @@ public class HomingBullet extends Bullet {
 		else
 			arctan = 180;
 		
-		float rotation = arctan - bullet.getRotation();
+		float rotation = (arctan - bullet.getRotation() + 720)%360; //Calculate positive maximum angle for bullet rotation
+		
+		//Calculate actual angle for bullet rotation
 		float newrotation;
-		if(rotation >= 0)
+		if(rotation <= 180)
 			newrotation = Math.min(HOMING, rotation);
 		else
-			newrotation = Math.min(-HOMING, rotation);
+			newrotation = Math.max((360-HOMING)%360, rotation);
 		
-		System.out.println(newrotation);
-		bullet.rotate(newrotation);
+		bullet.rotate(newrotation); //Rotate bullet
 	}
 }

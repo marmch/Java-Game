@@ -6,18 +6,19 @@ import org.newdawn.slick.SlickException;
 
 public class MainChar {
 	
-	public Image charsprite;
-	final float MAXSPEED = 0.3f;  //Maximum speed
-	final float ACCELERATION = 0.001f;  //Acceleration rate
-	public final int BULLETDELAY = 400;
-	float scaledAccel;
-	public float x;
-	public float y;
+	final float MAXSPEED = 0.3f; //Maximum speed
+	final float ACCELERATION = 0.001f; //Acceleration rate
+	public final int BULLETDELAY = 400; //Bullet spawn delay
+	final float BULLETSPEED = 1f; //Bullet speed
+	public Image charsprite; //Character sprite
+	float scaledAccel; //Scaled acceleration
+	public int bulletdelta = 0; //Bullet spawn timer
 	float speedx = 0;
 	float speedy = 0;
-	public int bulletdelta = 0;
+	public float x,y; //Coordinates
 	
-	public MainChar(Image mainchar, int x, int y) throws SlickException{  //(x,y) are starting coordinates
+	public MainChar(Image mainchar, int x, int y) throws SlickException{
+		//x,y are spawn coordinates
 		charsprite = mainchar;
 		this.x = x;
 		this.y = y;
@@ -28,6 +29,7 @@ public class MainChar {
 	}
 	
 	public void move(Input input, int delta, int max_x, int max_y){
+		//Lag jump fix sometimes causes problems; temporarily disabled
 		//This seems to help with lag jumps
 		/*
 		dcounter++;
@@ -144,14 +146,14 @@ public class MainChar {
 			slowDown();
 		}
 		
-		//Position is updated according to speed
+		//Position is updated according to speed and checked if outside level
 		if(x + speedx*delta >= 0 && x+speedx*delta <= max_x - charsprite.getWidth())
 			x += speedx*delta;
 		if(y + speedy*delta >= 0 && y+speedy*delta <= max_y - charsprite.getHeight())
 			y += speedy*delta;
 	}
 	
-	//Method to slow down when no keys are pressed
+	//Deceleration method
 	public void slowDown(){
 		if(speedx > 0){
 			if(speedx - scaledAccel/2 <= 0)
@@ -201,7 +203,7 @@ public class MainChar {
 		return input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON);
 	}
 	
-	public Bullet spawnBullet(Image bulletsprite){
-		return new Bullet(bulletsprite,x + charsprite.getWidth()/2,y + charsprite.getHeight()/2,1f,charsprite.getRotation());
+	public Bullet spawnBullet(String bulletsprite) throws SlickException{
+		return new Bullet(bulletsprite,x + charsprite.getWidth()/2,y + charsprite.getHeight()/2,BULLETSPEED,charsprite.getRotation());
 	}
 }

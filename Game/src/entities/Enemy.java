@@ -4,20 +4,21 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Enemy {
-	String color;
-	String type;
-	public float x;
-	public float y;
-	public float rotation = 0;
 	final float MAXSPEED = 0.5f;  //Maximum speed
 	final float ACCELERATION = 0.002f;  //Acceleration rate
-	protected Image enemy;
+	String color; //Enemy color
+	public String type; //Enemy type
+	public Image enemy; //Enemy sprite
+	public float rotation = 0; //Enemy rotation
+	public float x,y; //Coordinates
 	
 	public Enemy(String type, String color, float x, float y) throws SlickException{
 		this.type = type;
 		this.color = color;
 		this.x = x;
 		this.y = y;
+		
+		//Set enemy sprite
 		if(type.equals("blob1"))
 			enemy = new Image("img\\blob3blue.png");
 		else if(type.equals("blob2"))
@@ -28,17 +29,14 @@ public class Enemy {
 			enemy = new Image("img\\blob3blue.png");
 	}
 	
-	public String getType(){
-		return type;
-	}
-	
 	public void draw(){
 		enemy.draw(x,y);
 	}
 	
-	public void rotateTowards(MainChar obj){
-		float dx = x + enemy.getWidth()/2 - obj.x - obj.charsprite.getWidth()/2;
-		float dy = y + enemy.getHeight()/2 - obj.y - obj.charsprite.getHeight()/2;
+	public void rotateTowards(MainChar main){
+		//Calculate angle between enemy and main character
+		float dx = x + enemy.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
+		float dy = y + enemy.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
 		float arctan;
 		if(dy > 0 && dx > 0 || dy < 0 && dx > 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx)) + 180;
@@ -51,6 +49,7 @@ public class Enemy {
 		else
 			arctan = 0;
 		
+		//Rotate enemy towards main character
 		enemy.rotate(arctan - enemy.getRotation());
 	}
 }

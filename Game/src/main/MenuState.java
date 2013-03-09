@@ -14,17 +14,17 @@ public class MenuState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		//Load images
+
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		//Draw images
+
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int a) throws SlickException {
-		//Implement update code
+
 	}
 
 	@Override

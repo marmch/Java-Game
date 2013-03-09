@@ -3,15 +3,15 @@ package entities;
 import org.newdawn.slick.*;
 
 public class Bullet {
-	Image bullet;
-	float x,y;
+	Image bullet; //Bullet sprite
 	float speedx = 0;
 	float speedy = 0;
-	float angle;
-	float speed;
+	float angle; //Bullet angle
+	float speed; //Bullet speed
+	float x,y; //Coordinates
 	
-	public Bullet(Image bullet, float x, float y, float speed, float angle){
-		this.bullet = bullet;
+	public Bullet(String bullet, float x, float y, float speed, float angle) throws SlickException{
+		this.bullet = new Image(bullet);
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
@@ -19,12 +19,16 @@ public class Bullet {
 	}
 	
 	public void move(int delta){
+		//Calculate speed vector
 		speedx = (float) Math.cos(Math.toRadians(angle)) * speed;
 		speedy = (float) Math.sin(Math.toRadians(angle)) * speed;
+		
+		//Adjust coordinates
 		x += speedx * delta;
 		y += speedy * delta;
 	}
 	
+	//Check if bullet is outside level
 	public boolean outOfMap(int max_x, int max_y){
 		if(x < 0 || x > max_x - bullet.getWidth())
 			return true;

@@ -1,6 +1,5 @@
 package enemies;
 
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import entities.Bullet;
@@ -9,29 +8,35 @@ import entities.MainChar;
 
 public class Blob2 extends Enemy {
 	
-	float angle;
-	final float MAXSPEED = 0.01f;  //Maximum speed
-	public final int BULLETDELAY = 800;
-	final float ROTATESPEED = 0.2f; 
-	public int bulletdelta = 0;
+	
+	final float MAXSPEED = 0.2f;  //Maximum speed
+	public final int BULLETDELAY = 800; //Bullet spawn delay
+	final float ROTATESPEED = 0.2f; //Speed of rotation
+	final float BULLETSPEED = 0.1f; //Speed of bullet
+	public int bulletdelta = 0; //Bullet spawn timer
+	float angle; //Movement angle
 	float speedx;
 	float speedy;
 	
 	public Blob2(String type, String color, int x, int y) throws SlickException {
 		super(type, color, x, y);
-		angle = (float)Math.random()*360f;
+		angle = (float)Math.random()*360f; //Set random angle
 	}
 	
 	public void move(int delta){
 		enemy.rotate(ROTATESPEED*delta);
-		speedx = (float) (Math.cos(Math.toRadians(angle)) * MAXSPEED) * delta;
-		speedy = (float) (Math.sin(Math.toRadians(angle)) * MAXSPEED) * delta;
 		
+		//Calculate speed vector
+		speedx = (float) Math.cos(Math.toRadians(angle)) * MAXSPEED * delta;
+		speedy = (float) Math.sin(Math.toRadians(angle)) * MAXSPEED * delta;
+		
+		//Adjust coordinates
 		x += speedx * delta;
 		y += speedy * delta;
 	}
 	
-	public Bullet spawnBullet(MainChar main, Image bulletsprite){
+	public Bullet spawnBullet(MainChar main, String bulletsprite) throws SlickException{
+		//Calculate angle between blob and main character
 		float dx = x + enemy.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
 		float dy = y + enemy.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
 		float arctan;
@@ -45,7 +50,8 @@ public class Blob2 extends Enemy {
 			arctan = -90;
 		else
 			arctan = 0;
-
-		return new Bullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,1f,arctan);
+		
+		//Spawn bullet
+		return new Bullet(bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan);
 	}
 }

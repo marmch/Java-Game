@@ -28,7 +28,7 @@ public class LoadState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		
+		g.drawString("LOADING", 100, 100); //Temporary loading image
 	}
 
 	@Override

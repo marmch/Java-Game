@@ -12,13 +12,13 @@ public class LevelLoader {
 	ArrayList<Enemy> enemies;
 	
 	public LevelLoader(String levelfile) throws SlickException{
+		//Start parsing
 		XMLParser parser = new XMLParser();
 		base = parser.parse(levelfile);
 	}
 	
 	public void load() throws SlickException{
 		enemies = new ArrayList<Enemy>();
-		//System.out.println(base.getName());
 		XMLElementList elementlist = base.getChildren();
 		for(int i = 0; i < elementlist.size(); i++){
 			if(elementlist.get(i).getName().equals("enemy")){
