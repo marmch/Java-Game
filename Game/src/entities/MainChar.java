@@ -15,7 +15,7 @@ public class MainChar {
 	public Image charsprite; //Character sprite
 	float scaledAccel; //Scaled acceleration
 	public int bulletdelta = 0; //Bullet spawn timer
-	public int hp = 2; //Health
+	public int hp; //Health
 	float speedx = 0;
 	float speedy = 0;
 	public float x,y; //Coordinates
@@ -25,6 +25,7 @@ public class MainChar {
 		charsprite = mainchar;
 		this.x = x;
 		this.y = y;
+		hp = 2;
 	}
 	
 	public void draw(){

@@ -4,8 +4,8 @@ import entities.*;
 
 public class CollisionDetector {
 	
-	public int max_x = Game.play.max_x;
-	public int max_y = Game.play.max_y;
+	public int max_x = Game.RES_X;
+	public int max_y = Game.RES_Y;
 	
 	public boolean enemyMain(Enemy enemy, MainChar main){
 		if(enemy.x < main.x + main.charsprite.getWidth() && enemy.y < main.y + main.charsprite.getHeight() &&

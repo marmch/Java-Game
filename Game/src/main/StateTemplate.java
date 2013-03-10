@@ -8,7 +8,7 @@ public class StateTemplate extends BasicGameState {
 	int stateID;
 	
 	StateTemplate(int stateID){
-		stateID = this.stateID;
+		this.stateID = stateID;
 	}
 	
 	@Override

@@ -36,6 +36,7 @@ public class PlayState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		System.out.println("PLAY");
 		maincharsprite = new Image("img\\blob3blue.png");
 		bulletsprite ="img\\greenbullet.png";
 		hbulletsprite = "img\\greenbullet.png";
@@ -59,7 +60,7 @@ public class PlayState extends BasicGameState {
 		}
 		
 		if(main.hp <= 0)
-			g.drawString("YOU LOSE", 100, 100);
+			sbg.enterState(Game.LOSESTATE);
 	}
 
 	@Override

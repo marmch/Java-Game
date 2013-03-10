@@ -11,24 +11,34 @@ public class Game extends StateBasedGame{
 	final static int LOADSTATE = 1;
 	final static int PLAYSTATE = 2;
 	final static int PAUSESTATE = 3;
+	final static int LOSESTATE = 4;
 	final static int RES_X = 1200; //Level width
 	final static int RES_Y = 768; //Level height
 	public static LoadState load;
 	public static PlayState play;
+	public static MenuState menu;
+	public static LoseState lose;
 	
 	public Game() throws SlickException {
 		super("Game");
 		load = new LoadState(LOADSTATE);
 		play = new PlayState(PLAYSTATE);
+		menu = new MenuState(MENUSTATE);
+		lose = new LoseState(LOSESTATE);
+		
 		//Initialize states
-		//this.addState(new MenuState(MENUSTATE));
+		addState(menu);
 		addState(load);
 		addState(play);
+		addState(lose);
+		
 		play.setMap(RES_X, RES_Y);
+		
 		//this.addState(new PauseState(PAUSESTATE));
 		
-		//Enter Load State
-		this.enterState(LOADSTATE);
+		//Enter Menu State
+		enterState(MENUSTATE);
+		
 	}
 	
 	@Override

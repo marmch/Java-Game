@@ -8,7 +8,7 @@ public class PauseState extends BasicGameState {
 	int stateID;
 	
 	PauseState(int stateID){
-		stateID = this.stateID;
+		this.stateID = stateID;
 	}
 	
 	@Override
