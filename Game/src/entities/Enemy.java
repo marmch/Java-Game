@@ -1,5 +1,6 @@
 package entities;
 
+import main.CollisionDetector;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -8,6 +9,7 @@ public class Enemy {
 	public String type; //Enemy type
 	public Image enemy; //Enemy sprite
 	public float rotation = 0; //Enemy rotation
+	public CollisionDetector collision;
 	public float x,y; //Coordinates
 	
 	public Enemy(String type, String color, float x, float y) throws SlickException{
@@ -15,6 +17,7 @@ public class Enemy {
 		this.color = color;
 		this.x = x;
 		this.y = y;
+		collision = new CollisionDetector();
 		
 		//Set enemy sprite
 		if(type.equals("blob1"))
@@ -25,6 +28,7 @@ public class Enemy {
 			enemy = new Image("img\\blob3blue.png");
 		else if(type.equals("blob4"))
 			enemy = new Image("img\\blob3blue.png");
+		
 	}
 	
 	public void draw(){

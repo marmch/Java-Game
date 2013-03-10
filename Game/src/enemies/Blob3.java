@@ -11,7 +11,7 @@ import entities.MainChar;
 public class Blob3 extends Enemy {
 	
 	
-	final float MAXSPEED = 0.2f;  //Maximum speed
+	final float MAXSPEED = 0.3f;  //Maximum speed
 	public final int BULLETDELAY = 1000; //Bullet spawn delay
 	final float BULLETSPEED = 1f; //Bullet speed
 	public int bulletdelta = 0; //Bullet spawn timer
@@ -22,18 +22,22 @@ public class Blob3 extends Enemy {
 	public Blob3(String type, String color, int x, int y) throws SlickException {
 		super(type, color, x, y);
 		angle = (float)Math.random()*360f; //Set random angle
+		//Calculate speed vector
+		speedx = (float) (Math.cos(Math.toRadians(angle)) * MAXSPEED);
+		speedy = (float) (Math.sin(Math.toRadians(angle)) * MAXSPEED);
 	}
 	
 	public void move(MainChar main, int delta){
 		rotateTowards(main);
 		
-		//Calculate speed vector
-		speedx = (float) (Math.cos(Math.toRadians(angle)) * MAXSPEED) * delta;
-		speedy = (float) (Math.sin(Math.toRadians(angle)) * MAXSPEED) * delta;
+		if(collision.enemyWall(this) && (x<0 || x+enemy.getWidth() > collision.max_x))
+			speedx = -speedx;
+		if(collision.enemyWall(this) && (y<0 || y+enemy.getHeight() > collision.max_y))
+			speedy = -speedy;
 		
 		//Adjust coordinates
-		x += speedx * delta;
-		y += speedy * delta;
+		x += speedx * delta * delta;
+		y += speedy * delta * delta;
 	}
 	
 	public Bullet spawnBullet(MainChar main, String bulletsprite) throws SlickException{

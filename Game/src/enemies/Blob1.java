@@ -47,7 +47,7 @@ public class Blob1 extends Enemy {
 			}
 		}
 		
-		
+
 		
 	}
 	
@@ -71,6 +71,11 @@ public class Blob1 extends Enemy {
 		//Adjust coordinates
 		x += speedx * delta;
 		y += speedy * delta;
+		
+		if(collision.enemyWall(this)){
+			x -= speedx * delta;
+			y -= speedy * delta;
+		}
 	}
 	
 	//Deceleration method

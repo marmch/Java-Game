@@ -10,7 +10,7 @@ public class Bullet {
 	protected float speed; //Bullet speed
 	protected float angle; //Bullet angle
 	public float x,y; //Coordinates
-	boolean friendly; //Damages enemy or player
+	public boolean friendly; //Damages enemy or player
 	
 	public Bullet(String type, String bullet, float x, float y, float speed, float angle, boolean friendly) throws SlickException{
 		this.bullet = new Image(bullet);

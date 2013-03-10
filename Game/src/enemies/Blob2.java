@@ -14,7 +14,7 @@ public class Blob2 extends Enemy {
 	final float MAXSPEED = 0.2f;  //Maximum speed
 	public final int BULLETDELAY = 800; //Bullet spawn delay
 	final float ROTATESPEED = 0.2f; //Speed of rotation
-	final float BULLETSPEED = 0.1f; //Speed of bullet
+	final float BULLETSPEED = 0.4f; //Speed of bullet
 	public int bulletdelta = 0; //Bullet spawn timer
 	float angle; //Movement angle
 	float speedx;
@@ -23,18 +23,22 @@ public class Blob2 extends Enemy {
 	public Blob2(String type, String color, int x, int y) throws SlickException {
 		super(type, color, x, y);
 		angle = (float)Math.random()*360f; //Set random angle
+		//Calculate speed vector
+		speedx = (float) Math.cos(Math.toRadians(angle)) * MAXSPEED;
+		speedy = (float) Math.sin(Math.toRadians(angle)) * MAXSPEED;
 	}
 	
 	public void move(int delta){
 		enemy.rotate(ROTATESPEED*delta);
 		
-		//Calculate speed vector
-		speedx = (float) Math.cos(Math.toRadians(angle)) * MAXSPEED * delta;
-		speedy = (float) Math.sin(Math.toRadians(angle)) * MAXSPEED * delta;
+		if(collision.enemyWall(this) && (x<0 || x+enemy.getWidth() > collision.max_x))
+			speedx = -speedx;
+		if(collision.enemyWall(this) && (y<0 || y+enemy.getHeight() > collision.max_y))
+			speedy = -speedy;
 		
 		//Adjust coordinates
-		x += speedx * delta;
-		y += speedy * delta;
+		x += speedx * delta * delta;
+		y += speedy * delta * delta;
 	}
 	
 	public Bullet spawnBullet(MainChar main, String bulletsprite) throws SlickException{
