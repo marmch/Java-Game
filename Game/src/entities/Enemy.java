@@ -5,7 +5,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Enemy {
-	String color; //Enemy color
+	public String color; //Enemy color
 	public String type; //Enemy type
 	public Image enemy; //Enemy sprite
 	public float rotation = 0; //Enemy rotation
@@ -20,14 +20,46 @@ public class Enemy {
 		collision = new CollisionDetector();
 		
 		//Set enemy sprite
-		if(type.equals("blob1"))
-			enemy = new Image("img\\blob3blue.png");
-		else if(type.equals("blob2"))
-			enemy = new Image("img\\blob3blue.png");
-		else if(type.equals("blob3"))
-			enemy = new Image("img\\blob3blue.png");
-		else if(type.equals("blob4"))
-			enemy = new Image("img\\blob3blue.png");
+		if(type.equals("blob1")){
+			if(color.equals("red"))
+				enemy = new Image("img\\blob1red.png");
+			else if(color.equals("blue"))
+				enemy = new Image("img\\blob1blue.png");
+			else if(color.equals("green"))
+				enemy = new Image("img\\blob1green.png");
+			else
+				enemy = new Image("img\\blob1.png");
+		}
+		else if(type.equals("blob2")){
+			if(color.equals("red"))
+				enemy = new Image("img\\blob2red.png");
+			else if(color.equals("blue"))
+				enemy = new Image("img\\blob2blue.png");
+			else if(color.equals("green"))
+				enemy = new Image("img\\blob2green.png");
+			else
+				enemy = new Image("img\\blob2.png");
+		}
+		else if(type.equals("blob3")){
+			if(color.equals("red"))
+				enemy = new Image("img\\blob3red.png");
+			else if(color.equals("blue"))
+				enemy = new Image("img\\blob3blue.png");
+			else if(color.equals("green"))
+				enemy = new Image("img\\blob3green.png");
+			else
+				enemy = new Image("img\\blob3.png");
+		}
+		else if(type.equals("blob4")){
+			if(color.equals("red"))
+				enemy = new Image("img\\blob4red.png");
+			else if(color.equals("blue"))
+				enemy = new Image("img\\blob4blue.png");
+			else if(color.equals("green"))
+				enemy = new Image("img\\blob4green.png");
+			else
+				enemy = new Image("img\\blob4.png");
+		}
 		
 	}
 	

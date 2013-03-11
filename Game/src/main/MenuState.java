@@ -18,7 +18,6 @@ public class MenuState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		System.out.println("MENU");
 		Game.load.init(gc, sbg);
 		Game.play.init(gc, sbg);
 		Game.lose.init(gc, sbg);

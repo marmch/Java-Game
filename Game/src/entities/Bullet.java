@@ -12,8 +12,29 @@ public class Bullet {
 	public float x,y; //Coordinates
 	public boolean friendly; //Damages enemy or player
 	
-	public Bullet(String type, String bullet, float x, float y, float speed, float angle, boolean friendly) throws SlickException{
-		this.bullet = new Image(bullet);
+	public Bullet(String type, String color, float x, float y, float speed, float angle, boolean friendly) throws SlickException{
+		String bulletsprite;
+		if(type.equals("homing")){
+			if(color.equals("red"))
+				bulletsprite = "img\\dbulletred.png";
+			else if(color.equals("blue"))
+				bulletsprite = "img\\dbulletblue.png";
+			else if(color.equals("green"))
+				bulletsprite = "img\\dbulletgreen.png";
+			else
+				bulletsprite = "img\\dbullet.png";
+		}
+		else{
+			if(color.equals("red"))
+				bulletsprite = "img\\bbulletred.png";
+			else if(color.equals("blue"))
+				bulletsprite = "img\\bbulletblue.png";
+			else if(color.equals("green"))
+				bulletsprite = "img\\bbulletgreen.png";
+			else
+				bulletsprite = "img\\bbullet.png";
+		}
+		bullet = new Image(bulletsprite);
 		this.x = x;
 		this.y = y;
 		this.speed = speed;

@@ -41,7 +41,7 @@ public class Blob2 extends Enemy {
 		y += speedy * delta * delta;
 	}
 	
-	public Bullet spawnBullet(MainChar main, String bulletsprite) throws SlickException{
+	public Bullet spawnBullet(MainChar main) throws SlickException{
 		//Calculate angle between blob and main character
 		float dx = x + enemy.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
 		float dy = y + enemy.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
@@ -56,9 +56,9 @@ public class Blob2 extends Enemy {
 			arctan = -90;
 		else
 			arctan = 0;
-		
+
 		//Spawn bullet
-		Bullet b = new NormalBullet("normal", bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan,false);
+		Bullet b = new NormalBullet("normal", color,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan,false);
 		return b;
 	}
 }

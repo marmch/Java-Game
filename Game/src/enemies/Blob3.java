@@ -11,7 +11,7 @@ import entities.MainChar;
 public class Blob3 extends Enemy {
 	
 	
-	final float MAXSPEED = 0.3f;  //Maximum speed
+	final float MAXSPEED = 0.1f;  //Maximum speed
 	public final int BULLETDELAY = 1000; //Bullet spawn delay
 	final float BULLETSPEED = 1f; //Bullet speed
 	public int bulletdelta = 0; //Bullet spawn timer
@@ -40,7 +40,7 @@ public class Blob3 extends Enemy {
 		y += speedy * delta * delta;
 	}
 	
-	public Bullet spawnBullet(MainChar main, String bulletsprite) throws SlickException{
+	public Bullet spawnBullet(MainChar main) throws SlickException{
 		//Calculate angle between blob and main character
 		float dx = x + enemy.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
 		float dy = y + enemy.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
@@ -55,9 +55,9 @@ public class Blob3 extends Enemy {
 			arctan = -90;
 		else
 			arctan = 0;
-
+		
 		//Spawn homing bullet
-		Bullet b = new HomingBullet("homing", bulletsprite,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan, false);
+		Bullet b = new HomingBullet("homing", color,x + enemy.getWidth()/2,y + enemy.getHeight()/2,BULLETSPEED,arctan, false);
 		return b;
 	}
 }

@@ -200,7 +200,7 @@ public class MainChar {
 			arctan = -90;
 		else
 			arctan = 0;
-		charsprite.rotate(arctan - charsprite.getRotation());
+		charsprite.rotate(arctan - charsprite.getRotation()+90);
 	}
 	
 	public boolean shoot(Input input) throws SlickException{
@@ -208,7 +208,7 @@ public class MainChar {
 	}
 	
 	public Bullet spawnBullet(String bulletsprite) throws SlickException{
-		Bullet b = new NormalBullet("normal", bulletsprite,x + charsprite.getWidth()/2,y + charsprite.getHeight()/2,BULLETSPEED,charsprite.getRotation(), true);
+		Bullet b = new NormalBullet("normal", "none",x + charsprite.getWidth()/2,y + charsprite.getHeight()/2,BULLETSPEED,charsprite.getRotation()-90, true);
 		return b;
 	}
 }

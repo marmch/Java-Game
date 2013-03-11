@@ -15,9 +15,7 @@ public class PlayState extends BasicGameState {
 	Image maincharsprite; //Main character sprite
 	ArrayList<Bullet> bulletList; //Bullet array
 	String bulletsprite; //Bullet sprite location
-	String hbulletsprite; //Homing bullet sprite location
 	ArrayList<Enemy> enemies; //Enemy array
-	Image enemysprite; //Enemy sprite
 	int max_x, max_y; //Level width and height
 	CollisionDetector collision;
 	
@@ -36,12 +34,9 @@ public class PlayState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		System.out.println("PLAY");
-		maincharsprite = new Image("img\\blob3blue.png");
-		bulletsprite ="img\\greenbullet.png";
-		hbulletsprite = "img\\greenbullet.png";
-		enemysprite = new Image("img\\blob3blue.png");
-		main = new MainChar(maincharsprite,800,600); //Spawn main character
+		maincharsprite = new Image("img\\mainchar.png");
+		bulletsprite ="img\\bbullet.png";
+		main = new MainChar(maincharsprite,600,400); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
 		collision = new CollisionDetector();
 	}
@@ -91,27 +86,38 @@ public class PlayState extends BasicGameState {
 		
 		main.rotate(input); //Rotate main character towards mouse
 		
-		for(int i = 0; i < bulletList.size(); i++)
+		for(int i = 0; i < bulletList.size(); i++){
 			if(collision.bulletMain(main, bulletList.get(i))){
 				main.hp--;
 				bulletList.remove(i--);
+				continue;
 			}
+			for(int j = i+1; j < bulletList.size(); j++){
+				if(((bulletList.get(i).friendly && bulletList.get(j).type.equals("homing")) || (bulletList.get(j).friendly && bulletList.get(i).type.equals("homing"))) && 
+						collision.bulletBullet(bulletList.get(i), bulletList.get(j))){
+					bulletList.remove(i--);
+					bulletList.remove(--j);
+					break;
+				}
+			}
+		}
 		
 		//Move enemies
 		for(int i = 0; i < enemies.size(); i++){
-			boolean loop = true;
 			if(collision.enemyMain(enemies.get(i), main)){
 				main.hp--;
 				enemies.remove(i--);
-				loop = false;
+				continue;
 			}
-			for(int j = 0; j < bulletList.size(); j++)
+			boolean loop = true;
+			for(int j = 0; j < bulletList.size(); j++){
 				if(collision.enemyBullet(enemies.get(i), bulletList.get(j))){
 					enemies.remove(i--);
 					bulletList.remove(j--);
 					loop = false;
 					break;
 				}
+			}
 			if(!loop)
 				continue;
 			if(enemies.get(i).type.equals("blob1"))
@@ -122,7 +128,7 @@ public class PlayState extends BasicGameState {
 				if(((Blob2)enemies.get(i)).bulletdelta > 0)
 					((Blob2)enemies.get(i)).bulletdelta-= delta;
 				if(((Blob2)enemies.get(i)).bulletdelta <= 0){
-					bulletList.add(((Blob2)enemies.get(i)).spawnBullet(main, bulletsprite));
+					bulletList.add(((Blob2)enemies.get(i)).spawnBullet(main));
 					((Blob2)enemies.get(i)).bulletdelta = ((Blob2)enemies.get(i)).BULLETDELAY;
 				}
 			}
@@ -132,7 +138,7 @@ public class PlayState extends BasicGameState {
 				if(((Blob3)enemies.get(i)).bulletdelta > 0)
 					((Blob3)enemies.get(i)).bulletdelta-= delta;
 				if(((Blob3)enemies.get(i)).bulletdelta <= 0){
-					bulletList.add(((Blob3)enemies.get(i)).spawnBullet(main, hbulletsprite));
+					bulletList.add(((Blob3)enemies.get(i)).spawnBullet(main));
 					((Blob3)enemies.get(i)).bulletdelta = ((Blob3)enemies.get(i)).BULLETDELAY;
 				}
 			}
@@ -142,7 +148,7 @@ public class PlayState extends BasicGameState {
 				if(((Blob4)enemies.get(i)).bulletdelta > 0)
 					((Blob4)enemies.get(i)).bulletdelta-= delta;
 				if(((Blob4)enemies.get(i)).bulletdelta <= 0){
-					bulletList.add(((Blob4)enemies.get(i)).spawnBullet(bulletsprite));
+					bulletList.add(((Blob4)enemies.get(i)).spawnBullet());
 					((Blob4)enemies.get(i)).bulletdelta = ((Blob4)enemies.get(i)).BULLETDELAY;
 				}
 			}

@@ -24,7 +24,6 @@ public class LoadState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		System.out.println("LOAD");
 		switch(levelID){
 			default: level = new LevelLoader("levels\\testlevel.xml"); //Load file into parser
 				break;

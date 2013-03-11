@@ -35,4 +35,11 @@ public class CollisionDetector {
 			return true;
 		return false;
 	}
+	
+	public boolean bulletBullet(Bullet bullet1, Bullet bullet2){
+		if(bullet2.x < bullet1.x + bullet1.bullet.getWidth() && bullet2.y < bullet1.y + bullet1.bullet.getHeight() &&
+				bullet2.x + bullet2.bullet.getWidth() > bullet1.x && bullet2.y + bullet2.bullet.getHeight() > bullet1.y)
+			return true;
+		return false;
+	}
 }
