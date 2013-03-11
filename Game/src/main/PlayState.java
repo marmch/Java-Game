@@ -15,7 +15,10 @@ public class PlayState extends BasicGameState {
 	Image maincharsprite; //Main character sprite
 	ArrayList<Bullet> bulletList; //Bullet array
 	String bulletsprite; //Bullet sprite location
-	ArrayList<Enemy> enemies; //Enemy array
+	ArrayList<Enemy> enemies; //Active enemy array
+	ArrayList<Enemy> enemyspawn; //Enemies to be spawned
+	ArrayList<Enemy> groupspawn; //Next group spawned
+	int groupcounter; //Group counter
 	int max_x, max_y; //Level width and height
 	CollisionDetector collision;
 	
@@ -24,7 +27,8 @@ public class PlayState extends BasicGameState {
 	}
 	
 	public void loadEnemies(ArrayList<Enemy> enemies){
-		this.enemies = enemies; //Load enemies
+		this.enemyspawn = enemies; //Load enemies
+		this.enemies = new ArrayList<Enemy>();
 	}
 	
 	public void setMap(int max_x, int max_y){
@@ -39,6 +43,7 @@ public class PlayState extends BasicGameState {
 		main = new MainChar(maincharsprite,600,400); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
 		collision = new CollisionDetector();
+		groupcounter = 0;
 	}
 
 	@Override
@@ -63,6 +68,13 @@ public class PlayState extends BasicGameState {
 		Input input = gc.getInput(); //Get input
 		
 		main.move(input, delta, max_x, max_y); //Move main character
+		
+		for(int i = 0; i < enemyspawn.size(); i++){
+			if(enemyspawn.get(i).spawn.spawnConditionsMet(enemies)){
+				enemies.add(enemyspawn.get(i));
+				enemyspawn.remove(i--);
+			}
+		}
 		
 		//Move bullets
 		for(int i = 0; i < bulletList.size(); i++){

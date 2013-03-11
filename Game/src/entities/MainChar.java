@@ -10,7 +10,7 @@ public class MainChar {
 	
 	final float MAXSPEED = 0.3f; //Maximum speed
 	final float ACCELERATION = 0.001f; //Acceleration rate
-	public final int BULLETDELAY = 400; //Bullet spawn delay
+	public final int BULLETDELAY = 50; //Bullet spawn delay
 	final float BULLETSPEED = 1f; //Bullet speed
 	public Image charsprite; //Character sprite
 	float scaledAccel; //Scaled acceleration
@@ -25,7 +25,7 @@ public class MainChar {
 		charsprite = mainchar;
 		this.x = x;
 		this.y = y;
-		hp = 2;
+		hp = 5;
 	}
 	
 	public void draw(){

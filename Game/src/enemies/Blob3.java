@@ -1,5 +1,7 @@
 package enemies;
 
+import main.SpawnConditions;
+
 import org.newdawn.slick.SlickException;
 
 import bullets.HomingBullet;
@@ -19,8 +21,8 @@ public class Blob3 extends Enemy {
 	float speedx;
 	float speedy;
 	
-	public Blob3(String type, String color, int x, int y) throws SlickException {
-		super(type, color, x, y);
+	public Blob3(String type, String color, SpawnConditions spawn, int group, int x, int y) throws SlickException {
+		super(type, color, spawn, group, x, y);
 		angle = (float)Math.random()*360f; //Set random angle
 		//Calculate speed vector
 		speedx = (float) (Math.cos(Math.toRadians(angle)) * MAXSPEED);
@@ -36,8 +38,8 @@ public class Blob3 extends Enemy {
 			speedy = -speedy;
 		
 		//Adjust coordinates
-		x += speedx * delta * delta;
-		y += speedy * delta * delta;
+		x += speedx * delta;
+		y += speedy * delta;
 	}
 	
 	public Bullet spawnBullet(MainChar main) throws SlickException{

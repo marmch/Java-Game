@@ -3,4 +3,10 @@
 	<enemy type="blob2" color="blue" x="1000" y="100" />
 	<enemy type="blob3" color="green" x="100" y="700" />
 	<enemy type="blob4" color="none" x="1000" y="700" />
+		<enemy type="blob4" color="none" x="100" y="100">
+		<spawncondition type = "movement">
+			<Keys k1="W" k2="A" k3="S" k4="D" />
+			<Mouse click="LEFT" />
+		</spawncondition>
+	</enemy>
 </level>

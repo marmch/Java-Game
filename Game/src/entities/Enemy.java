@@ -1,6 +1,8 @@
 package entities;
 
 import main.CollisionDetector;
+import main.SpawnConditions;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -11,12 +13,16 @@ public class Enemy {
 	public float rotation = 0; //Enemy rotation
 	public CollisionDetector collision;
 	public float x,y; //Coordinates
+	public SpawnConditions spawn;
+	public int group;
 	
-	public Enemy(String type, String color, float x, float y) throws SlickException{
+	public Enemy(String type, String color, SpawnConditions spawn, int group, float x, float y) throws SlickException{
 		this.type = type;
 		this.color = color;
 		this.x = x;
 		this.y = y;
+		this.spawn = spawn;
+		this.group = group;
 		collision = new CollisionDetector();
 		
 		//Set enemy sprite

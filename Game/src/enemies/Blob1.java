@@ -1,5 +1,7 @@
 package enemies;
 
+import main.SpawnConditions;
+
 import org.newdawn.slick.SlickException;
 
 import entities.Enemy;
@@ -10,7 +12,7 @@ public class Blob1 extends Enemy {
 	
 	final int DASHTIME = 500; //Time spent dashing
 	final int DASHCOOLDOWN = 500; //Cooldown on dash
-	final float MAXSPEED = 1.2f; //Maximum speed
+	final float MAXSPEED = 1f; //Maximum speed
 	final float ACCELERATION = 1f; //Acceleration rate
 	float scaledAccel; //Scaled acceleration
 	float angle; //Dash angle
@@ -19,13 +21,13 @@ public class Blob1 extends Enemy {
 	float speedx = 0;
 	float speedy = 0;
 	
-	public Blob1(String type, String color, int x, int y) throws SlickException {
-		super(type, color, x, y);
+	public Blob1(String type, String color, SpawnConditions spawn, int group, int x, int y) throws SlickException {
+		super(type, color, spawn, group, x, y);
 		angle = enemy.getRotation();
 	}
 	
 	public void move(MainChar main, int delta){
-		scaledAccel = delta / ACCELERATION; //Scale acceleration
+		scaledAccel = 1 / ACCELERATION; //Scale acceleration
 		rotateTowards(main);
 		
 		if(dashcooltimer > 0){
@@ -65,8 +67,8 @@ public class Blob1 extends Enemy {
 		float k = r1/r2;
 		
 		//Scale vector
-		speedx *= k*k*delta;
-		speedy *= k*k*delta;
+		speedx *= k*k;
+		speedy *= k*k;
 		
 		//Adjust coordinates
 		x += speedx * delta;

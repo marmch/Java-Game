@@ -7,8 +7,8 @@ import entities.MainChar;
 
 public class HomingBullet extends Bullet {
 	
-	final float HOMING = 0.05f; //Homing rate
-	final float ACCELERATION = 0.2f;  //Acceleration rate
+	final float HOMING = 0.2f; //Homing rate
+	final float ACCELERATION = 1f;  //Acceleration rate
 
 	public HomingBullet(String type, String bullet, float x, float y, float speed, float angle, boolean friendly) throws SlickException {
 		super(type, bullet, x, y, speed, angle, friendly);
@@ -32,8 +32,8 @@ public class HomingBullet extends Bullet {
 		float k = r1/r2;
 		
 		//Scale vector
-		speedx *= k*k*delta;
-		speedy *= k*k*delta;
+		speedx *= k*k;
+		speedy *= k*k;
 		
 		//Adjust coordinates
 		x += speedx * delta;
