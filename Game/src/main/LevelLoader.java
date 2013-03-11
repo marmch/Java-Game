@@ -39,6 +39,16 @@ public class LevelLoader {
 				else if(type.equals("blob4"))
 					enemytemp = new Blob4(type,color,x,y);
 				
+				XMLElementList atts = elementlist.get(i).getChildren();
+				for(int j = 0; j < atts.size(); j++){
+					if(atts.get(j).getName().equals("spawncondition")){
+						XMLElementList conditions = atts.get(j).getChildren();
+						for(int k = 0; k < conditions.size(); k++){
+							
+						}
+					}
+				}
+				
 				//Add enemy to list
 				enemies.add(enemytemp);
 			}
