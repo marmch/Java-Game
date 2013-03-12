@@ -9,7 +9,6 @@ import entities.Enemy;
 
 public class LevelLoader {
 	XMLElement base;
-	public int maxgroups;
 	ArrayList<Enemy> enemies;
 	
 	public LevelLoader(String levelfile) throws SlickException{
@@ -21,7 +20,6 @@ public class LevelLoader {
 	public void load() throws SlickException{
 		enemies = new ArrayList<Enemy>();
 		XMLElementList elementlist = base.getChildren();
-		maxgroups = base.getIntAttribute("maxgroups");
 		for(int i = 0; i < elementlist.size(); i++){
 			if(elementlist.get(i).getName().equals("enemy")){
 				//Load enemy data from XML
@@ -39,6 +37,13 @@ public class LevelLoader {
 					if(atts.get(j).getName().equals("spawncondition")){
 						if(atts.get(j).getAttribute("type").equals("empty")){
 							conditions.add("empty");
+						}
+						if(atts.get(j).getAttribute("type").equals("timer")){
+							conditions.add("timer");
+							spawn.time = atts.get(j).getIntAttribute("time");
+						}
+						if(atts.get(j).getAttribute("type").equals("key")){
+							conditions.add("key");
 						}
 					}
 				}

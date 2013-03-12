@@ -1,17 +1,17 @@
-<level maxgroups="2">
-	<enemy type="blob2" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "empty" />
+<level maxgroups="1">
+	<enemy type="blob1" color="none" x="100" y="330" group="1">
+		<spawncondition type = "key" />
 	</enemy>
-	<enemy type="blob2" color="none" x="1000" y="700" group="1">
+	<enemy type="blob1" color="none" x="1100" y="330" group="2">
 		<spawncondition type = "empty" />
+		<spawncondition type = "timer" time="5000" />
 	</enemy>
-	<enemy type="blob2" color="none" x="1000" y="700" group="2">
+	<enemy type="blob1" color="none" x="610" y="50" group="3">
 		<spawncondition type = "empty" />
+		<spawncondition type = "timer" time="5000" />
 	</enemy>
-	<enemy type="blob2" color="none" x="1000" y="700" group="2">
+	<enemy type="blob1" color="none" x="610" y="700" group="4">
 		<spawncondition type = "empty" />
-	</enemy>
-	<enemy type="blob2" color="none" x="1000" y="700" group="2">
-		<spawncondition type = "empty" />
+		<spawncondition type = "timer" time="5000" />
 	</enemy>
 </level>

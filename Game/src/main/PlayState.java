@@ -18,7 +18,6 @@ public class PlayState extends BasicGameState {
 	ArrayList<Enemy> enemies; //Active enemy array
 	ArrayList<Enemy> enemyspawn; //Enemies to be spawned
 	int groupcounter; //Group counter
-	public int maxgroups;
 	int max_x, max_y; //Level width and height
 	CollisionDetector collision;
 	
@@ -68,12 +67,10 @@ public class PlayState extends BasicGameState {
 		Input input = gc.getInput(); //Get input
 		
 		main.move(input, delta, max_x, max_y); //Move main character
-		
-		boolean leveldone = true;
 		for(int i = 0; i < enemyspawn.size(); i++){
+			System.out.println(groupcounter);
 			if(enemyspawn.get(i).group == groupcounter){
-				leveldone = false;
-				if(enemyspawn.get(i).spawn.spawnConditionsMet(enemies)){
+				if(enemyspawn.get(i).spawn.spawnConditionsMet(enemies, input, delta)){
 					for(int j = 0; j < enemyspawn.size(); j++){
 						if(enemyspawn.get(j).group == groupcounter){
 							enemies.add(enemyspawn.get(j));
@@ -86,7 +83,7 @@ public class PlayState extends BasicGameState {
 			}
 		}
 		
-		if(leveldone && enemies.size()==0)
+		if(enemyspawn.size()==0 && enemies.size()==0)
 			sbg.enterState(Game.WINSTATE);
 			
 		
