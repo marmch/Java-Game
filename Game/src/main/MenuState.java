@@ -21,6 +21,7 @@ public class MenuState extends BasicGameState {
 		Game.load.init(gc, sbg);
 		Game.play.init(gc, sbg);
 		Game.lose.init(gc, sbg);
+		Game.win.init(gc, sbg);
 		buttondelay = 500;
 		playButton = new MenuButton(play, 200, 200, SCALE);
 	}

@@ -17,8 +17,8 @@ public class PlayState extends BasicGameState {
 	String bulletsprite; //Bullet sprite location
 	ArrayList<Enemy> enemies; //Active enemy array
 	ArrayList<Enemy> enemyspawn; //Enemies to be spawned
-	ArrayList<Enemy> groupspawn; //Next group spawned
 	int groupcounter; //Group counter
+	public int maxgroups;
 	int max_x, max_y; //Level width and height
 	CollisionDetector collision;
 	
@@ -43,7 +43,7 @@ public class PlayState extends BasicGameState {
 		main = new MainChar(maincharsprite,600,400); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
 		collision = new CollisionDetector();
-		groupcounter = 0;
+		groupcounter = 1;
 	}
 
 	@Override
@@ -69,12 +69,26 @@ public class PlayState extends BasicGameState {
 		
 		main.move(input, delta, max_x, max_y); //Move main character
 		
+		boolean leveldone = true;
 		for(int i = 0; i < enemyspawn.size(); i++){
-			if(enemyspawn.get(i).spawn.spawnConditionsMet(enemies)){
-				enemies.add(enemyspawn.get(i));
-				enemyspawn.remove(i--);
+			if(enemyspawn.get(i).group == groupcounter){
+				leveldone = false;
+				if(enemyspawn.get(i).spawn.spawnConditionsMet(enemies)){
+					for(int j = 0; j < enemyspawn.size(); j++){
+						if(enemyspawn.get(j).group == groupcounter){
+							enemies.add(enemyspawn.get(j));
+							enemyspawn.remove(j--);
+						}
+					}
+					groupcounter++;
+					break;
+				}
 			}
 		}
+		
+		if(leveldone && enemies.size()==0)
+			sbg.enterState(Game.WINSTATE);
+			
 		
 		//Move bullets
 		for(int i = 0; i < bulletList.size(); i++){

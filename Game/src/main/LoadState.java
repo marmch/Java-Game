@@ -32,6 +32,7 @@ public class LoadState extends BasicGameState {
 		level.load(); //Load level contents
 		enemies = level.getEnemies(); //Get enemies
 		Game.play.loadEnemies(enemies); //Load enemies into play state
+		Game.play.maxgroups = level.maxgroups;
 	}
 
 	@Override

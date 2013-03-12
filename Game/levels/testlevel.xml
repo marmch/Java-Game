@@ -1,62 +1,17 @@
-<level>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
+<level maxgroups="2">
+	<enemy type="blob2" color="none" x="1000" y="700" group="1">
+		<spawncondition type = "empty" />
 	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
+	<enemy type="blob2" color="none" x="1000" y="700" group="1">
+		<spawncondition type = "empty" />
 	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
+	<enemy type="blob2" color="none" x="1000" y="700" group="2">
+		<spawncondition type = "empty" />
 	</enemy>
-	
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
+	<enemy type="blob2" color="none" x="1000" y="700" group="2">
+		<spawncondition type = "empty" />
 	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	
-	
-	
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
-	</enemy>
-	<enemy type="blob3" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "" />
+	<enemy type="blob2" color="none" x="1000" y="700" group="2">
+		<spawncondition type = "empty" />
 	</enemy>
 </level>
