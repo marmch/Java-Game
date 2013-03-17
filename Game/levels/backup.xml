@@ -1,8 +1,0 @@
-<level>
-	<enemy type="blob4" color="none" x="1000" y="700" group="1">
-		<spawncondition type = "empty" />
-	</enemy>
-	<enemy type="blob4" color="none" x="1000" y="700" group="2">
-		<spawncondition type = "empty" />
-	</enemy>
-</level>

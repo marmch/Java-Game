@@ -21,8 +21,8 @@ public class Blob1 extends Enemy {
 	float speedx = 0;
 	float speedy = 0;
 	
-	public Blob1(String type, String color, SpawnConditions spawn, int group, int x, int y) throws SlickException {
-		super(type, color, spawn, group, x, y);
+	public Blob1(String type, String color, SpawnConditions spawn, int group) throws SlickException {
+		super(type, color, spawn, group);
 		angle = enemy.getRotation();
 	}
 	

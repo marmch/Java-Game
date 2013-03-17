@@ -19,8 +19,8 @@ public class Blob4 extends Enemy {
 	float speedx = 0;
 	float speedy = 0;
 	
-	public Blob4(String type, String color, SpawnConditions spawn, int group, int x, int y) throws SlickException {
-		super(type, color, spawn, group, x, y);
+	public Blob4(String type, String color, SpawnConditions spawn, int group) throws SlickException {
+		super(type, color, spawn, group);
 	}
 	
 	public void move(MainChar main, int delta){

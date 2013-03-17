@@ -190,9 +190,9 @@ public class MainChar {
 		float dx = x + charsprite.getWidth()/2 - input.getMouseX();
 		float dy = y + charsprite.getHeight()/2 - input.getMouseY();
 		float arctan;
-		if(dy > 0 && dx > 0 || dy < 0 && dx > 0)
+		if(dy > 0 && dx >= 0 || dy < 0 && dx >= 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx)) + 180;
-		else if(dy < 0 && dx <= 0 || dy > 0 && dx <= 0)
+		else if(dy < 0 && dx < 0 || dy > 0 && dx < 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx));
 		else if (x > 0)
 			arctan = 90;

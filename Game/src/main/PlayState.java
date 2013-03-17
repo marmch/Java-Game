@@ -11,7 +11,7 @@ import entities.*;
 public class PlayState extends BasicGameState {
 
 	int stateID;
-	MainChar main; //Main character
+	public MainChar main; //Main character
 	Image maincharsprite; //Main character sprite
 	ArrayList<Bullet> bulletList; //Bullet array
 	String bulletsprite; //Bullet sprite location
@@ -68,11 +68,22 @@ public class PlayState extends BasicGameState {
 		
 		main.move(input, delta, max_x, max_y); //Move main character
 		for(int i = 0; i < enemyspawn.size(); i++){
-			System.out.println(groupcounter);
 			if(enemyspawn.get(i).group == groupcounter){
 				if(enemyspawn.get(i).spawn.spawnConditionsMet(enemies, input, delta)){
 					for(int j = 0; j < enemyspawn.size(); j++){
 						if(enemyspawn.get(j).group == groupcounter){
+							if(enemyspawn.get(j).spawn.spawntype.equals("relative")){
+								enemyspawn.get(j).x += main.x;
+								enemyspawn.get(j).y += main.y;
+								if(enemyspawn.get(j).x > max_x-enemyspawn.get(j).enemy.getWidth())
+									enemyspawn.get(j).x = max_x-enemyspawn.get(j).enemy.getWidth();
+								else if(enemyspawn.get(j).x < 0)
+									enemyspawn.get(j).x = 0;
+								if(enemyspawn.get(j).y > max_y-enemyspawn.get(j).enemy.getWidth())
+									enemyspawn.get(j).y = max_y-enemyspawn.get(j).enemy.getWidth();
+								else if(enemyspawn.get(j).y < 0)
+									enemyspawn.get(j).y = 0;
+							}
 							enemies.add(enemyspawn.get(j));
 							enemyspawn.remove(j--);
 						}

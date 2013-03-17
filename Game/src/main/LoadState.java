@@ -10,7 +10,7 @@ import entities.Enemy;
 public class LoadState extends BasicGameState {
 
 	int stateID;
-	int levelID = 0;
+	public int levelID = 1;
 	LevelLoader level;
 	ArrayList<Enemy> enemies;
 	
@@ -18,15 +18,14 @@ public class LoadState extends BasicGameState {
 		this.stateID = stateID;
 	}
 	
-	public void setLevel(int ID){
-		levelID = ID;
-	}
-	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		//Load file into parser
 		switch(levelID){
-			default: level = new LevelLoader("levels\\testlevel.xml"); //Load file into parser
-				break;
+		case 1: level = new LevelLoader("levels\\level1.xml"); 
+			break;
+		default: level = new LevelLoader("levels\\testlevel.xml"); 
+			break;
 		}
 		
 		level.load(); //Load level contents

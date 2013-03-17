@@ -25,10 +25,7 @@ public class LevelLoader {
 				//Load enemy data from XML
 				String type = elementlist.get(i).getAttribute("type");
 				String color = elementlist.get(i).getAttribute("color");
-				int x = elementlist.get(i).getIntAttribute("x");
-				int y = elementlist.get(i).getIntAttribute("y");
 				int group = Integer.parseInt(elementlist.get(i).getAttribute("group"));
-				
 				SpawnConditions spawn = new SpawnConditions();
 				ArrayList<String> conditions = new ArrayList<String>();
 				
@@ -46,6 +43,11 @@ public class LevelLoader {
 							conditions.add("key");
 						}
 					}
+					else if(atts.get(j).getName().equals("spawnlocation")){
+						spawn.spawntype = atts.get(j).getAttribute("type");
+						spawn.x = (float) atts.get(j).getDoubleAttribute("x");
+						spawn.y = (float) atts.get(j).getDoubleAttribute("y");
+					}
 				}
 				
 				spawn.conditions = conditions;
@@ -53,13 +55,13 @@ public class LevelLoader {
 				//Create enemy type
 				Enemy enemytemp = null;
 				if(type.equals("blob1"))
-					enemytemp = new Blob1(type,color,spawn,group,x,y);
+					enemytemp = new Blob1(type,color,spawn,group);
 				else if(type.equals("blob2"))
-					enemytemp = new Blob2(type,color,spawn,group,x,y);
+					enemytemp = new Blob2(type,color,spawn,group);
 				else if(type.equals("blob3"))
-					enemytemp = new Blob3(type,color,spawn,group,x,y);
+					enemytemp = new Blob3(type,color,spawn,group);
 				else if(type.equals("blob4"))
-					enemytemp = new Blob4(type,color,spawn,group,x,y);
+					enemytemp = new Blob4(type,color,spawn,group);
 				
 				//Add enemy to list
 				enemies.add(enemytemp);

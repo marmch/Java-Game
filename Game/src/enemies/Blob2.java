@@ -22,8 +22,8 @@ public class Blob2 extends Enemy {
 	float speedx;
 	float speedy;
 	
-	public Blob2(String type, String color, SpawnConditions spawn, int group, int x, int y) throws SlickException {
-		super(type, color, spawn, group, x, y);
+	public Blob2(String type, String color, SpawnConditions spawn, int group) throws SlickException {
+		super(type, color, spawn, group);
 		angle = (float)Math.random()*360f; //Set random angle
 		//Calculate speed vector
 		speedx = (float) Math.cos(Math.toRadians(angle)) * MAXSPEED;

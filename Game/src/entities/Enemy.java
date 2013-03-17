@@ -16,11 +16,11 @@ public class Enemy {
 	public SpawnConditions spawn;
 	public int group;
 	
-	public Enemy(String type, String color, SpawnConditions spawn, int group, float x, float y) throws SlickException{
+	public Enemy(String type, String color, SpawnConditions spawn, int group) throws SlickException{
 		this.type = type;
 		this.color = color;
-		this.x = x;
-		this.y = y;
+		x = spawn.x;
+		y = spawn.y;
 		this.spawn = spawn;
 		this.group = group;
 		collision = new CollisionDetector();
@@ -78,9 +78,9 @@ public class Enemy {
 		float dx = x + enemy.getWidth()/2 - main.x - main.charsprite.getWidth()/2;
 		float dy = y + enemy.getHeight()/2 - main.y - main.charsprite.getHeight()/2;
 		float arctan;
-		if(dy > 0 && dx > 0 || dy < 0 && dx > 0)
+		if(dy > 0 && dx >= 0 || dy < 0 && dx >= 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx)) + 180;
-		else if(dy < 0 && dx <= 0 || dy > 0 && dx <= 0)
+		else if(dy < 0 && dx < 0 || dy > 0 && dx < 0)
 			arctan = (float)Math.toDegrees(Math.atan(dy/dx));
 		else if (x > 0)
 			arctan = 90;

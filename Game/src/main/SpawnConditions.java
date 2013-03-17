@@ -9,9 +9,10 @@ import entities.Enemy;
 public class SpawnConditions {
 	public ArrayList<String> conditions;
 	public int time;
+	public float x,y;
+	public String spawntype;
 	
-	public SpawnConditions(){
-		
+	public SpawnConditions(){	
 	}
 	
 	public boolean spawnConditionsMet(ArrayList<Enemy> e, Input input, int delta){

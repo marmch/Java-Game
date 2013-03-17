@@ -19,7 +19,7 @@ public class Game extends StateBasedGame{
 	public static PlayState play;
 	public static MenuState menu;
 	public static LoseState lose;
-	public static WinState win;
+	public static LevelWin win;
 	
 	public Game() throws SlickException {
 		super("Game");
@@ -27,7 +27,7 @@ public class Game extends StateBasedGame{
 		play = new PlayState(PLAYSTATE);
 		menu = new MenuState(MENUSTATE);
 		lose = new LoseState(LOSESTATE);
-		win = new WinState(WINSTATE);
+		win = new LevelWin(WINSTATE);
 		
 		//Initialize states
 		addState(menu);

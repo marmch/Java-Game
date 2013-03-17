@@ -3,7 +3,7 @@ package main;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class WinState extends BasicGameState {
+public class LevelWin extends BasicGameState {
 
 	int stateID;
 	MenuButton menuButton;
@@ -11,7 +11,7 @@ public class WinState extends BasicGameState {
 	final String play = "img\\menuitem.png";
 	//Initialize menu images, sound, etc.
 	
-	WinState(int stateID){
+	LevelWin(int stateID){
 		this.stateID = stateID;
 	}
 	
@@ -31,8 +31,11 @@ public class WinState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int a) throws SlickException {
 		Input input = gc.getInput();
 		if(menuButton.mouseOver(input) && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
-			Game.menu.init(gc, sbg);
-			sbg.enterState(Game.MENUSTATE);
+			Game.load.levelID++;
+			Game.load.init(gc, sbg);
+			Game.play.init(gc, sbg);
+			Game.lose.init(gc, sbg);
+			sbg.enterState(Game.LOADSTATE);
 		}
 	}
 
