@@ -1,5 +1,5 @@
-<level maxgroups="1">
-	<enemy type="blob1" color="none" x="100" y="330" group="1">
+<level>
+	<enemy type="blob1" color="none" group="1">
 		<spawnlocation type="absolute" x="100" y="330" />
 		<spawncondition type = "key" />
 	</enemy>
@@ -9,13 +9,77 @@
 		<spawncondition type = "timer" time="5000" />
 	</enemy>
 	<enemy type="blob1" color="none" group="3">
-		<spawnlocation type="relative" x="-100" y="-100" />
+		<spawnlocation type="absolute" x="610" y="700" />
 		<spawncondition type = "empty" />
 		<spawncondition type = "timer" time="5000" />
 	</enemy>
 	<enemy type="blob1" color="none" group="4">
-		<spawnlocation type="absolute" x="610" y="700" />
+		<spawnlocation type="absolute" x="610" y="50" />
 		<spawncondition type = "empty" />
 		<spawncondition type = "timer" time="5000" />
+	</enemy>
+	<enemy type="blob1" color="none" group="5">
+		<spawnlocation type="absolute" x="100" y="50" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="5">
+		<spawnlocation type="absolute" x="1100" y="50" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="5">
+		<spawnlocation type="absolute" x="100" y="700" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="5">
+		<spawnlocation type="absolute" x="1100" y="700" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="6">
+		<spawnlocation type="relative" x="200" y="0" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="6">
+		<spawnlocation type="relative" x="-200" y="0" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="6">
+		<spawnlocation type="relative" x="0" y="200" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="6">
+		<spawnlocation type="relative" x="0" y="-200" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="200" y="0" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="-200" y="0" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="0" y="200" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="0" y="-200" />
+		<spawncondition type = "empty" />
+	</enemy>
+		<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="200" y="200" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="-200" y="200" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="200" y="-200" />
+		<spawncondition type = "empty" />
+	</enemy>
+	<enemy type="blob1" color="none" group="7">
+		<spawnlocation type="relative" x="-200" y="-200" />
+		<spawncondition type = "empty" />
 	</enemy>
 </level>

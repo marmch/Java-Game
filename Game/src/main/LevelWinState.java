@@ -3,7 +3,7 @@ package main;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class LevelWin extends BasicGameState {
+public class LevelWinState extends BasicGameState {
 
 	int stateID;
 	MenuButton menuButton;
@@ -11,7 +11,7 @@ public class LevelWin extends BasicGameState {
 	final String play = "img\\menuitem.png";
 	//Initialize menu images, sound, etc.
 	
-	LevelWin(int stateID){
+	LevelWinState(int stateID){
 		this.stateID = stateID;
 	}
 	

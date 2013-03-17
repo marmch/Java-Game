@@ -1,4 +1,4 @@
-<level maxgroups="1">
+<level>
 	<enemy type="blob1" color="none" x="100" y="330" group="1">
 		<spawnlocation x="100" y="330" />
 		<spawncondition type = "key" />

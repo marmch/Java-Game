@@ -26,6 +26,8 @@ public class LevelLoader {
 				String type = elementlist.get(i).getAttribute("type");
 				String color = elementlist.get(i).getAttribute("color");
 				int group = Integer.parseInt(elementlist.get(i).getAttribute("group"));
+				float angle = -1;
+				
 				SpawnConditions spawn = new SpawnConditions();
 				ArrayList<String> conditions = new ArrayList<String>();
 				
@@ -48,6 +50,9 @@ public class LevelLoader {
 						spawn.x = (float) atts.get(j).getDoubleAttribute("x");
 						spawn.y = (float) atts.get(j).getDoubleAttribute("y");
 					}
+					else if(atts.get(j).getName().equals("direction")){
+						angle = (float) atts.get(j).getDoubleAttribute("angle");
+					}
 				}
 				
 				spawn.conditions = conditions;
@@ -56,10 +61,18 @@ public class LevelLoader {
 				Enemy enemytemp = null;
 				if(type.equals("blob1"))
 					enemytemp = new Blob1(type,color,spawn,group);
-				else if(type.equals("blob2"))
-					enemytemp = new Blob2(type,color,spawn,group);
-				else if(type.equals("blob3"))
-					enemytemp = new Blob3(type,color,spawn,group);
+				else if(type.equals("blob2")){
+					if(angle == -1)
+						enemytemp = new Blob2(type,color,spawn,group);
+					else
+						enemytemp = new Blob2(type,color,spawn,group, angle);
+				}
+				else if(type.equals("blob3")){
+					if(angle == -1)
+						enemytemp = new Blob3(type,color,spawn,group);
+					else
+						enemytemp = new Blob3(type,color,spawn,group, angle);
+				}
 				else if(type.equals("blob4"))
 					enemytemp = new Blob4(type,color,spawn,group);
 				

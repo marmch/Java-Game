@@ -51,6 +51,8 @@ public class PlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		main.draw(); //Render main character
 		
+		g.drawString("HP: " + main.hp, 50, 50);
+		
 		//Render bullets
 		for(Bullet bullet : bulletList)
 			bullet.draw();
@@ -102,8 +104,12 @@ public class PlayState extends BasicGameState {
 			}
 		}
 		
-		if(enemyspawn.size()==0 && enemies.size()==0)
-			sbg.enterState(Game.WINSTATE);
+		if(enemyspawn.size()==0 && enemies.size()==0){
+			if(Game.load.levelID >= 2)
+				sbg.enterState(Game.WINSTATE);
+			else
+				sbg.enterState(Game.LEVELWINSTATE);
+		}
 			
 		
 		//Move bullets

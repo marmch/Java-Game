@@ -10,7 +10,7 @@ import entities.Enemy;
 public class LoadState extends BasicGameState {
 
 	int stateID;
-	public int levelID = 1;
+	public int levelID = 3;
 	LevelLoader level;
 	ArrayList<Enemy> enemies;
 	
@@ -23,6 +23,10 @@ public class LoadState extends BasicGameState {
 		//Load file into parser
 		switch(levelID){
 		case 1: level = new LevelLoader("levels\\level1.xml"); 
+			break;
+		case 2: level = new LevelLoader("levels\\level2.xml");
+			break;
+		case 3: level = new LevelLoader("levels\\level3.xml");
 			break;
 		default: level = new LevelLoader("levels\\testlevel.xml"); 
 			break;
