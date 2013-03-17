@@ -13,6 +13,7 @@ public class PlayState extends BasicGameState {
 	int stateID;
 	public MainChar main; //Main character
 	Image maincharsprite; //Main character sprite
+	Image spawncircle; //Spawning circle
 	ArrayList<Bullet> bulletList; //Bullet array
 	String bulletsprite; //Bullet sprite location
 	ArrayList<Enemy> enemies; //Active enemy array
@@ -38,6 +39,7 @@ public class PlayState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		maincharsprite = new Image("img\\mainchar.png");
+		spawncircle = new Image("img\\spawncircle.png");
 		bulletsprite ="img\\bbullet.png";
 		main = new MainChar(maincharsprite,600,400); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
@@ -55,7 +57,13 @@ public class PlayState extends BasicGameState {
 		
 		//Render enemies
 		for(Enemy enemy : enemies){
-			enemy.draw();
+			if(enemy.spawntime > 0){
+				Image tempcircle = spawncircle.getScaledCopy(enemy.spawntime/1000f);
+				tempcircle.draw(enemy.x + enemy.enemy.getWidth()/2 - tempcircle.getWidth()/2,
+						enemy.y + enemy.enemy.getHeight()/2 - tempcircle.getHeight()/2);
+			}
+			else
+				enemy.draw();
 		}
 		
 		if(main.hp <= 0)
@@ -138,52 +146,56 @@ public class PlayState extends BasicGameState {
 		
 		//Move enemies
 		for(int i = 0; i < enemies.size(); i++){
-			if(collision.enemyMain(enemies.get(i), main)){
-				main.hp--;
-				enemies.remove(i--);
-				continue;
-			}
-			boolean loop = true;
-			for(int j = 0; j < bulletList.size(); j++){
-				if(collision.enemyBullet(enemies.get(i), bulletList.get(j))){
+			if(enemies.get(i).spawntime > 0)
+				enemies.get(i).spawntime -= delta;
+			else{
+				if(collision.enemyMain(enemies.get(i), main)){
+					main.hp--;
 					enemies.remove(i--);
-					bulletList.remove(j--);
-					loop = false;
-					break;
+					continue;
 				}
-			}
-			if(!loop)
-				continue;
-			if(enemies.get(i).type.equals("blob1"))
-				((Blob1)enemies.get(i)).move(main, delta);
-			
-			else if(enemies.get(i).type.equals("blob2")){
-				((Blob2)enemies.get(i)).move(delta);
-				if(((Blob2)enemies.get(i)).bulletdelta > 0)
-					((Blob2)enemies.get(i)).bulletdelta-= delta;
-				if(((Blob2)enemies.get(i)).bulletdelta <= 0){
-					bulletList.add(((Blob2)enemies.get(i)).spawnBullet(main));
-					((Blob2)enemies.get(i)).bulletdelta = ((Blob2)enemies.get(i)).BULLETDELAY;
+				boolean loop = true;
+				for(int j = 0; j < bulletList.size(); j++){
+					if(collision.enemyBullet(enemies.get(i), bulletList.get(j))){
+						enemies.remove(i--);
+						bulletList.remove(j--);
+						loop = false;
+						break;
+					}
 				}
-			}
-			
-			else if(enemies.get(i).type.equals("blob3")){
-				((Blob3)enemies.get(i)).move(main, delta);
-				if(((Blob3)enemies.get(i)).bulletdelta > 0)
-					((Blob3)enemies.get(i)).bulletdelta-= delta;
-				if(((Blob3)enemies.get(i)).bulletdelta <= 0){
-					bulletList.add(((Blob3)enemies.get(i)).spawnBullet(main));
-					((Blob3)enemies.get(i)).bulletdelta = ((Blob3)enemies.get(i)).BULLETDELAY;
+				if(!loop)
+					continue;
+				if(enemies.get(i).type.equals("blob1"))
+					((Blob1)enemies.get(i)).move(main, delta);
+				
+				else if(enemies.get(i).type.equals("blob2")){
+					((Blob2)enemies.get(i)).move(delta);
+					if(((Blob2)enemies.get(i)).bulletdelta > 0)
+						((Blob2)enemies.get(i)).bulletdelta-= delta;
+					if(((Blob2)enemies.get(i)).bulletdelta <= 0){
+						bulletList.add(((Blob2)enemies.get(i)).spawnBullet(main));
+						((Blob2)enemies.get(i)).bulletdelta = ((Blob2)enemies.get(i)).BULLETDELAY;
+					}
 				}
-			}
-			
-			else if(enemies.get(i).type.equals("blob4")){
-				((Blob4)enemies.get(i)).move(main, delta);
-				if(((Blob4)enemies.get(i)).bulletdelta > 0)
-					((Blob4)enemies.get(i)).bulletdelta-= delta;
-				if(((Blob4)enemies.get(i)).bulletdelta <= 0){
-					bulletList.add(((Blob4)enemies.get(i)).spawnBullet());
-					((Blob4)enemies.get(i)).bulletdelta = ((Blob4)enemies.get(i)).BULLETDELAY;
+				
+				else if(enemies.get(i).type.equals("blob3")){
+					((Blob3)enemies.get(i)).move(main, delta);
+					if(((Blob3)enemies.get(i)).bulletdelta > 0)
+						((Blob3)enemies.get(i)).bulletdelta-= delta;
+					if(((Blob3)enemies.get(i)).bulletdelta <= 0){
+						bulletList.add(((Blob3)enemies.get(i)).spawnBullet(main));
+						((Blob3)enemies.get(i)).bulletdelta = ((Blob3)enemies.get(i)).BULLETDELAY;
+					}
+				}
+				
+				else if(enemies.get(i).type.equals("blob4")){
+					((Blob4)enemies.get(i)).move(main, delta);
+					if(((Blob4)enemies.get(i)).bulletdelta > 0)
+						((Blob4)enemies.get(i)).bulletdelta-= delta;
+					if(((Blob4)enemies.get(i)).bulletdelta <= 0){
+						bulletList.add(((Blob4)enemies.get(i)).spawnBullet());
+						((Blob4)enemies.get(i)).bulletdelta = ((Blob4)enemies.get(i)).BULLETDELAY;
+					}
 				}
 			}
 		}

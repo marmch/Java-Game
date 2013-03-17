@@ -15,6 +15,7 @@ public class Enemy {
 	public float x,y; //Coordinates
 	public SpawnConditions spawn;
 	public int group;
+	public int spawntime;
 	
 	public Enemy(String type, String color, SpawnConditions spawn, int group) throws SlickException{
 		this.type = type;
@@ -24,6 +25,7 @@ public class Enemy {
 		this.spawn = spawn;
 		this.group = group;
 		collision = new CollisionDetector();
+		spawntime = 1000;
 		
 		//Set enemy sprite
 		if(type.equals("blob1")){
