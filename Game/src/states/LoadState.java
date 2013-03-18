@@ -1,6 +1,9 @@
-package main;
+package states;
 
 import java.util.ArrayList;
+
+import main.Game;
+import main.LevelLoader;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
@@ -10,16 +13,17 @@ import entities.Enemy;
 public class LoadState extends BasicGameState {
 
 	int stateID;
-	public int levelID = 4;
+	public int levelID = 1;
 	LevelLoader level;
 	ArrayList<Enemy> enemies;
 	
-	LoadState(int stateID){
+	public LoadState(int stateID){
 		this.stateID = stateID;
 	}
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		levelID = Game.currentlevel;
 		//Load file into parser
 		switch(levelID){
 		case 1: level = new LevelLoader("levels\\level1.xml"); 
@@ -30,7 +34,7 @@ public class LoadState extends BasicGameState {
 			break;
 		case 4: level = new LevelLoader("levels\\level4.xml");
 			break;
-		default: level = new LevelLoader("levels\\testlevel.xml"); 
+		default: sbg.enterState(Game.WINSTATE);
 			break;
 		}
 		

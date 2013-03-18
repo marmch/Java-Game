@@ -1,13 +1,13 @@
-package main;
+package states;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class PauseState extends BasicGameState {
+public class StateTemplate extends BasicGameState {
 
 	int stateID;
 	
-	PauseState(int stateID){
+	StateTemplate(int stateID){
 		this.stateID = stateID;
 	}
 	

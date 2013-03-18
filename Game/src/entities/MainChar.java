@@ -25,7 +25,7 @@ public class MainChar {
 		charsprite = mainchar;
 		this.x = x;
 		this.y = y;
-		hp = 100;
+		hp = 20;
 	}
 	
 	public void draw(){

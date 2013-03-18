@@ -1,6 +1,10 @@
-package main;
+package states;
 
 import java.util.ArrayList;
+
+import main.CollisionDetector;
+import main.Game;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
@@ -21,8 +25,9 @@ public class PlayState extends BasicGameState {
 	int groupcounter; //Group counter
 	int max_x, max_y; //Level width and height
 	CollisionDetector collision;
+	final int MAXLEVELS = 4;
 	
-	PlayState(int stateID) throws SlickException{
+	public PlayState(int stateID) throws SlickException{
 		this.stateID = stateID;
 	}
 	
@@ -105,7 +110,7 @@ public class PlayState extends BasicGameState {
 		}
 		
 		if(enemyspawn.size()==0 && enemies.size()==0){
-			if(Game.load.levelID >= 2)
+			if(Game.load.levelID >= 4)
 				sbg.enterState(Game.WINSTATE);
 			else
 				sbg.enterState(Game.LEVELWINSTATE);

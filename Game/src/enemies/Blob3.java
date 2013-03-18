@@ -14,7 +14,7 @@ public class Blob3 extends Enemy {
 	
 	
 	final float MAXSPEED = 0.1f;  //Maximum speed
-	public final int BULLETDELAY = 1000; //Bullet spawn delay
+	public final int BULLETDELAY = 2000; //Bullet spawn delay
 	final float BULLETSPEED = 1f; //Bullet speed
 	public int bulletdelta = 0; //Bullet spawn timer
 	float angle; //Movement angle

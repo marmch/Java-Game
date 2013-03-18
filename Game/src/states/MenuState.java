@@ -1,4 +1,7 @@
-package main;
+package states;
+
+import main.Game;
+import main.MenuButton;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
@@ -9,10 +12,10 @@ public class MenuState extends BasicGameState {
 	MenuButton playButton;
 	final float SCALE = 1.2f;
 	int buttondelay;
-	final String play = "img\\menuitem.png";
+	final String play = "img\\PlayButton.png";
 	//Initialize menu images, sound, etc.
 	
-	MenuState(int stateID){
+	public MenuState(int stateID){
 		this.stateID = stateID;
 	}
 	

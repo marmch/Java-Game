@@ -1,19 +1,28 @@
 package main;
-//v0.21
+//v0.30
 import org.lwjgl.LWJGLUtil;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+
+import states.LevelWinState;
+import states.LoadState;
+import states.LoseState;
+import states.MenuState;
+import states.PlayState;
+import states.WinState;
+
 import java.io.File;
 
 public class Game extends StateBasedGame{
 	
-	final static int MENUSTATE = 0;
-	final static int LOADSTATE = 1;
-	final static int PLAYSTATE = 2;
-	final static int PAUSESTATE = 3;
-	final static int LOSESTATE = 4;
-	final static int LEVELWINSTATE = 5;
-	final static int WINSTATE = 6;
+	public final static int MENUSTATE = 0;
+	public final static int LOADSTATE = 1;
+	public final static int PLAYSTATE = 2;
+	public final static int PAUSESTATE = 3;
+	public final static int LOSESTATE = 4;
+	public final static int LEVELWINSTATE = 5;
+	public final static int WINSTATE = 6;
+	public static int currentlevel = 1;
 	final static int RES_X = 1200; //Level width
 	final static int RES_Y = 768; //Level height
 	public static LoadState load;
