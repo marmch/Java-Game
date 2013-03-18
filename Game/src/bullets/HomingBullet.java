@@ -16,16 +16,16 @@ public class HomingBullet extends Bullet {
 	}
 	
 	public void move(MainChar main, int delta){
-		homeOn(main, HOMING);
-		float scaledAccel = delta / ACCELERATION; //Scale acceleration
+		homeOn(main, HOMING*delta);
+		System.out.println(bullet.getRotation());
 		float angle = bullet.getRotation(); //Find absolute bullet angle
 		
 		//Calculate speed vector
 		float r1 = speed;
 		float cosa = (float) Math.cos(Math.toRadians(angle));
 		float sina = (float) Math.sin(Math.toRadians(angle));
-		speedx += cosa * scaledAccel;
-		speedy += sina * scaledAccel;
+		speedx += cosa * ACCELERATION;
+		speedy += sina * ACCELERATION;
 		
 		//Calculate scaling coefficient
 		float r2 = (float) Math.sqrt(speedx*speedx + speedy*speedy);

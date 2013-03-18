@@ -1,5 +1,5 @@
 package main;
-//v0.32
+//v0.33
 import org.lwjgl.LWJGLUtil;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
@@ -22,7 +22,7 @@ public class Game extends StateBasedGame{
 	public final static int LOSESTATE = 4;
 	public final static int LEVELWINSTATE = 5;
 	public final static int WINSTATE = 6;
-	public static int currentlevel = 1;
+	public static int currentlevel = 3;
 	final static int RES_X = 1200; //Level width
 	final static int RES_Y = 768; //Level height
 	public static LoadState load;

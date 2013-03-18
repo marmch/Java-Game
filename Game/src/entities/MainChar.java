@@ -9,7 +9,7 @@ import bullets.NormalBullet;
 public class MainChar {
 	
 	final float MAXSPEED = 0.3f; //Maximum speed
-	final float ACCELERATION = 0.001f; //Acceleration rate
+	final float ACCELERATION = 0.008f; //Acceleration rate
 	public final int BULLETDELAY = 500; //Bullet spawn delay
 	final float BULLETSPEED = 1f; //Bullet speed
 	public Image charsprite; //Character sprite
@@ -49,7 +49,7 @@ public class MainChar {
 		}
 		*/
 		
-		scaledAccel = ACCELERATION * delta;
+		scaledAccel = ACCELERATION;
 		
 		//Key input adds acceleration value to speed
 		if(input.isKeyDown(Input.KEY_A) && input.isKeyDown(Input.KEY_D)){
