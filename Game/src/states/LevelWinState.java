@@ -9,9 +9,11 @@ import org.newdawn.slick.state.*;
 public class LevelWinState extends BasicGameState {
 
 	int stateID;
-	MenuButton menuButton;
+	MenuButton menubutton;
+	MenuButton continuebutton;
 	final float SCALE = 1.2f;
 	final String cont = "img\\ContinueButton.png";
+	final String menu = "img\\MenuButton.png";
 	//Initialize menu images, sound, etc.
 	
 	public LevelWinState(int stateID){
@@ -20,20 +22,30 @@ public class LevelWinState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		menuButton = new MenuButton(cont, 100, 100, SCALE);
+		menubutton = new MenuButton(menu, 100, 100, SCALE);
+		continuebutton = new MenuButton(cont, 100, 300, SCALE);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		Input input = gc.getInput();
-		menuButton.draw(100,100, menuButton.mouseOver(input));
+		menubutton.draw(100,100, menubutton.mouseOver(input));
+		continuebutton.draw(100,300, continuebutton.mouseOver(input));
 		g.drawString("YOU WIN LEVEL " + Game.load.levelID, 400, 400);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int a) throws SlickException {
 		Input input = gc.getInput();
-		if(menuButton.mouseOver(input) && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+		if(menubutton.mouseOver(input) && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
+			Game.load.levelID = 1;
+			Game.currentlevel = 1;
+			Game.load.init(gc, sbg);
+			Game.play.init(gc, sbg);
+			Game.lose.init(gc, sbg);
+			sbg.enterState(Game.MENUSTATE);
+		}
+		else if(continuebutton.mouseOver(input) && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 			Game.load.levelID++;
 			Game.currentlevel = Game.load.levelID;
 			Game.load.init(gc, sbg);

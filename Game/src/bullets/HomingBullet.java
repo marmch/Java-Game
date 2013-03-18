@@ -7,7 +7,7 @@ import entities.MainChar;
 
 public class HomingBullet extends Bullet {
 	
-	final float HOMING = 0.05f; //Homing rate
+	final float HOMING = 0.03f; //Homing rate
 	final float ACCELERATION = 1f;  //Acceleration rate
 
 	public HomingBullet(String type, String bullet, float x, float y, float speed, float angle, boolean friendly) throws SlickException {

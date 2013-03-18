@@ -24,12 +24,12 @@ public class MenuButton {
 	}
 	
 	public boolean mouseOver(Input input){
-		return input.getMouseX() > x && input.getMouseX() > y && input.getMouseX() < x+button.getWidth() && input.getMouseY() < y+button.getHeight();
+		return input.getMouseX() > x && input.getMouseY() > y && input.getMouseX() < x+button.getWidth() && input.getMouseY() < y+button.getHeight();
 	}
 	
 	public void draw(int x, int y, boolean big){
 		if(big)
-			bigbutton.draw(x,y);
+			bigbutton.draw(x-(bigbutton.getWidth()-button.getWidth())/2,y-(bigbutton.getHeight()-button.getHeight())/2);
 		else
 			button.draw(x,y);
 	}
