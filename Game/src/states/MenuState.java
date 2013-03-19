@@ -9,10 +9,10 @@ import org.newdawn.slick.state.*;
 public class MenuState extends BasicGameState {
 
 	int stateID;
-	MenuButton playButton;
+	MenuButton levelButton;
 	final float SCALE = 1.2f;
 	int buttondelay;
-	final String play = "img\\PlayButton.png";
+	final String level = "img\\LevelSelect.png";
 	//Initialize menu images, sound, etc.
 	
 	public MenuState(int stateID){
@@ -21,19 +21,17 @@ public class MenuState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		Game.load.init(gc, sbg);
-		Game.play.init(gc, sbg);
 		Game.lose.init(gc, sbg);
 		Game.win.init(gc, sbg);
 		Game.levelwin.init(gc, sbg);
 		buttondelay = 500;
-		playButton = new MenuButton(play, 200, 200, SCALE);
+		levelButton = new MenuButton(level, 200, 200, SCALE);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		Input input = gc.getInput();
-		playButton.draw(playButton.x,playButton.y, playButton.mouseOver(input));
+		levelButton.draw(levelButton.x,levelButton.y, levelButton.mouseOver(input));
 	}
 
 	@Override
@@ -41,8 +39,8 @@ public class MenuState extends BasicGameState {
 		if(buttondelay >= 0)
 			buttondelay -= delta;
 		Input input = gc.getInput();
-		if(buttondelay < 0 && playButton.mouseOver(input) && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
-			sbg.enterState(Game.LOADSTATE);
+		if(buttondelay < 0 && levelButton.mouseOver(input) && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON))
+			sbg.enterState(Game.LEVELSELECTSTATE);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import org.lwjgl.LWJGLUtil;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
+import states.LevelSelectState;
 import states.LevelWinState;
 import states.LoadState;
 import states.LoseState;
@@ -22,6 +23,7 @@ public class Game extends StateBasedGame{
 	public final static int LOSESTATE = 4;
 	public final static int LEVELWINSTATE = 5;
 	public final static int WINSTATE = 6;
+	public final static int LEVELSELECTSTATE = 7;
 	public static int currentlevel = 3;
 	final static int RES_X = 1200; //Level width
 	final static int RES_Y = 768; //Level height
@@ -31,6 +33,7 @@ public class Game extends StateBasedGame{
 	public static LoseState lose;
 	public static LevelWinState levelwin;
 	public static WinState win;
+	public static LevelSelectState level;
 	
 	public Game() throws SlickException {
 		super("Game");
@@ -40,6 +43,7 @@ public class Game extends StateBasedGame{
 		lose = new LoseState(LOSESTATE);
 		levelwin = new LevelWinState(LEVELWINSTATE);
 		win = new WinState(WINSTATE);
+		level = new LevelSelectState(LEVELSELECTSTATE);
 		
 		//Initialize states
 		addState(menu);
@@ -48,6 +52,7 @@ public class Game extends StateBasedGame{
 		addState(lose);
 		addState(win);
 		addState(levelwin);
+		addState(level);
 		
 		play.setMap(RES_X, RES_Y);
 		

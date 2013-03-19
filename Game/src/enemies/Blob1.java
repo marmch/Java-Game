@@ -1,5 +1,6 @@
 package enemies;
 
+import main.Constants;
 import main.SpawnConditions;
 
 import org.newdawn.slick.SlickException;
@@ -10,10 +11,10 @@ import entities.MainChar;
 
 public class Blob1 extends Enemy {
 	
-	final int DASHTIME = 500; //Time spent dashing
-	final int DASHCOOLDOWN = 500; //Cooldown on dash
-	final float MAXSPEED = 1f; //Maximum speed
-	final float ACCELERATION = 1f; //Acceleration rate
+	final int DASHTIME = Constants.BLOB1DASHTIME; //Time spent dashing
+	final int DASHCOOLDOWN = Constants.BLOB1DASHCOOLDOWN; //Cooldown on dash
+	final float MAXSPEED = Constants.BLOB1MAXSPEED; //Maximum speed
+	final float ACCELERATION = Constants.BLOB1ACCELERATION; //Acceleration rate
 	float scaledAccel; //Scaled acceleration
 	float angle; //Dash angle
 	public int dashtimer = 0; //Dashing timer

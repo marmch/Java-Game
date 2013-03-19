@@ -1,5 +1,7 @@
 package bullets;
 
+import main.Constants;
+
 import org.newdawn.slick.SlickException;
 
 import entities.Bullet;
@@ -7,9 +9,9 @@ import entities.MainChar;
 
 public class HomingBullet extends Bullet {
 	
-	final float HOMING = 0.03f; //Homing rate
-	final float ACCELERATION = 1f;  //Acceleration rate
-
+	final float HOMING = Constants.HOMINGACCELERATION;
+	final float ACCELERATION = Constants.HOMINGCONST;
+	
 	public HomingBullet(String type, String bullet, float x, float y, float speed, float angle, boolean friendly) throws SlickException {
 		super(type, bullet, x, y, speed, angle, friendly);
 		super.bullet.rotate(angle);
