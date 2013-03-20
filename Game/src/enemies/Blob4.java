@@ -1,5 +1,6 @@
 package enemies;
 
+import main.Constants;
 import main.SpawnConditions;
 
 import org.newdawn.slick.SlickException;
@@ -12,9 +13,9 @@ import entities.MainChar;
 
 public class Blob4 extends Enemy {
 	
-	final float MAXSPEED = 0.2f; //Maximum speed
-	public final int BULLETDELAY = 800; //Bullet delay
-	final float BULLETSPEED = 0.4f; //Bullet speed
+	final float MAXSPEED = Constants.BLOB4MAXSPEED; //Maximum speed
+	public final int BULLETDELAY = Constants.BLOB4BULLETDELAY; //Bullet delay
+	final float BULLETSPEED = Constants.BLOB4BULLETSPEED; //Bullet speed
 	public int bulletdelta = 0; //Bullet spawn timer
 	float speedx = 0;
 	float speedy = 0;
