@@ -1,6 +1,6 @@
 package enemies;
 
-import main.Constants;
+ import main.Constants;
 import main.SpawnConditions;
 
 import org.newdawn.slick.SlickException;
