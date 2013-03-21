@@ -2,7 +2,7 @@ package states;
 
 import java.util.ArrayList;
 
-import main.CollisionDetector;
+import main.Collision;
 import main.Game;
 
 import org.newdawn.slick.*;
@@ -24,7 +24,6 @@ public class PlayState extends BasicGameState {
 	ArrayList<Enemy> enemyspawn; //Enemies to be spawned
 	int groupcounter; //Group counter
 	int max_x, max_y; //Level width and height
-	CollisionDetector collision;
 	final int MAXLEVELS = 4;
 	
 	public PlayState(int stateID) throws SlickException{
@@ -46,9 +45,8 @@ public class PlayState extends BasicGameState {
 		maincharsprite = new Image("img\\mainchar.png");
 		spawncircle = new Image("img\\spawncircle.png");
 		bulletsprite ="img\\bbullet.png";
-		main = new MainChar(maincharsprite,600,400); //Spawn main character
+		main = new MainChar(maincharsprite,450,350); //Spawn main character
 		bulletList = new ArrayList<Bullet>();
-		collision = new CollisionDetector();
 		groupcounter = 1;
 	}
 
@@ -140,14 +138,14 @@ public class PlayState extends BasicGameState {
 		main.rotate(input); //Rotate main character towards mouse
 		
 		for(int i = 0; i < bulletList.size(); i++){
-			if(collision.bulletMain(main, bulletList.get(i))){
+			if(Collision.bulletMain(main, bulletList.get(i))){
 				main.hp--;
 				bulletList.remove(i--);
 				continue;
 			}
 			for(int j = i+1; j < bulletList.size(); j++){
 				if(((bulletList.get(i).friendly && bulletList.get(j).type.equals("homing")) || (bulletList.get(j).friendly && bulletList.get(i).type.equals("homing"))) && 
-						collision.bulletBullet(bulletList.get(i), bulletList.get(j))){
+						Collision.bulletBullet(bulletList.get(i), bulletList.get(j))){
 					bulletList.remove(i--);
 					bulletList.remove(--j);
 					break;
@@ -160,14 +158,14 @@ public class PlayState extends BasicGameState {
 			if(enemies.get(i).spawntime > 0)
 				enemies.get(i).spawntime -= delta;
 			else{
-				if(collision.enemyMain(enemies.get(i), main)){
+				if(Collision.enemyMain(enemies.get(i), main)){
 					main.hp--;
 					enemies.remove(i--);
 					continue;
 				}
 				boolean loop = true;
 				for(int j = 0; j < bulletList.size(); j++){
-					if(collision.enemyBullet(enemies.get(i), bulletList.get(j))){
+					if(Collision.enemyBullet(enemies.get(i), bulletList.get(j))){
 						enemies.remove(i--);
 						bulletList.remove(j--);
 						loop = false;

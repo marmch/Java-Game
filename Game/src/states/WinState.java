@@ -1,5 +1,6 @@
 package states;
 
+import main.Constants;
 import main.Game;
 import main.MenuButton;
 
@@ -10,7 +11,6 @@ public class WinState extends BasicGameState {
 
 	int stateID;
 	MenuButton menuButton;
-	final float SCALE = 1.2f;
 	final String menu = "img\\MenuButton.png";
 	//Initialize menu images, sound, etc.
 	
@@ -20,7 +20,7 @@ public class WinState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		menuButton = new MenuButton(menu, 100, 100, SCALE);
+		menuButton = new MenuButton(menu, 100, 100, Constants.SCALE);
 	}
 
 	@Override

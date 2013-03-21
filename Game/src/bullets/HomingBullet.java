@@ -19,7 +19,6 @@ public class HomingBullet extends Bullet {
 	
 	public void move(MainChar main, int delta){
 		homeOn(main, HOMING*delta);
-		System.out.println(bullet.getRotation());
 		float angle = bullet.getRotation(); //Find absolute bullet angle
 		
 		//Calculate speed vector

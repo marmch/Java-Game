@@ -1,6 +1,5 @@
 package entities;
 
-import main.CollisionDetector;
 import main.SpawnConditions;
 
 import org.newdawn.slick.Image;
@@ -11,7 +10,6 @@ public class Enemy {
 	public String type; //Enemy type
 	public Image enemy; //Enemy sprite
 	public float rotation = 0; //Enemy rotation
-	public CollisionDetector collision;
 	public float x,y; //Coordinates
 	public SpawnConditions spawn;
 	public int group;
@@ -24,7 +22,6 @@ public class Enemy {
 		y = spawn.y;
 		this.spawn = spawn;
 		this.group = group;
-		collision = new CollisionDetector();
 		spawntime = 1000;
 		
 		//Set enemy sprite

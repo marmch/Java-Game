@@ -1,5 +1,6 @@
 package enemies;
 
+import main.Collision;
 import main.Constants;
 import main.SpawnConditions;
 
@@ -41,9 +42,9 @@ public class Blob3 extends Enemy {
 	public void move(MainChar main, int delta){
 		rotateTowards(main);
 		
-		if(collision.enemyWall(this) && (x<0 || x+enemy.getWidth() > collision.max_x))
+		if(Collision.enemyWall(this) && (x<0 || x+enemy.getWidth() > Collision.max_x))
 			speedx = -speedx;
-		if(collision.enemyWall(this) && (y<0 || y+enemy.getHeight() > collision.max_y))
+		if(Collision.enemyWall(this) && (y<0 || y+enemy.getHeight() > Collision.max_y))
 			speedy = -speedy;
 		
 		//Adjust coordinates

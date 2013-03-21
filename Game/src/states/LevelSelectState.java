@@ -1,5 +1,6 @@
 package states;
 
+import main.Constants;
 import main.Game;
 import main.MenuButton;
 
@@ -9,12 +10,10 @@ import org.newdawn.slick.state.*;
 public class LevelSelectState extends BasicGameState {
 
 	int stateID;
-	MenuButton playButton;
 	Image helix1, helix2;
+	Image grid;
 	MenuButton[] levels;
-	final float SCALE = 1.2f;
 	int buttondelay;
-	final String play = "img\\PlayButton.png";
 	//Initialize menu images, sound, etc.
 	
 	public LevelSelectState(int stateID){
@@ -24,19 +23,27 @@ public class LevelSelectState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		buttondelay = 500;
-		playButton = new MenuButton(play, 200, 200, SCALE);
 		helix1 = new Image("img\\Level Select\\Double Helix.png");
 		helix2 = new Image("img\\Level Select\\Double Helix Flip.png");
+		grid = new Image("img\\Level Select\\Character Grid.png");
 		levels = new MenuButton[4];
+		int helixwidth = helix1.getWidth();
+		int helixheight = helix1.getHeight();
+		int lvlwidth = (new Image("img\\Level Select\\Levels\\l0.png")).getWidth();
+		int lvlheight = (new Image("img\\Level Select\\Levels\\l0.png")).getHeight();
 		for(int i = 0; i < levels.length; i++){
 			levels[i] = new MenuButton("img\\Level Select\\Levels\\l" + (i+1) + ".png", 
-					400 + 128*i, 200 + (helix1.getHeight()-(new Image("img\\Level Select\\Levels\\l1.png").getHeight()))*((i+1)%2), SCALE);
+					Constants.LEVELPOSX + (lvlwidth+helixwidth)*i, 
+					Constants.LEVELPOSY + (helixheight-lvlheight)*((i+1)%2), 
+					Constants.SCALE);
 		}
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		Input input = gc.getInput();
+		
+		grid.draw(Constants.CHARGRIDX, Constants.CHARGRIDY);
 		
 		//playButton.draw(playButton.x,playButton.y, playButton.mouseOver(input));
 		for(int i = 0; i < levels.length-1; i++){

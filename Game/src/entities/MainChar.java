@@ -1,5 +1,7 @@
 package entities;
 
+import main.Constants;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
@@ -8,10 +10,10 @@ import bullets.NormalBullet;
 
 public class MainChar {
 	
-	final float MAXSPEED = 0.3f; //Maximum speed
-	final float ACCELERATION = 0.001f; //Acceleration rate
-	public final int BULLETDELAY = 500; //Bullet spawn delay
-	final float BULLETSPEED = 1f; //Bullet speed
+	final float MAXSPEED = Constants.MAINMAXSPEED; //Maximum speed
+	final float ACCELERATION =Constants.MAINACCELERATION; //Acceleration rate
+	public final int BULLETDELAY = Constants.MAINBULLETDELAY; //Bullet spawn delay
+	final float BULLETSPEED = Constants.MAINBULLETSPEED; //Bullet speed
 	public Image charsprite; //Character sprite
 	float scaledAccel; //Scaled acceleration
 	public int bulletdelta = 0; //Bullet spawn timer
@@ -25,7 +27,7 @@ public class MainChar {
 		charsprite = mainchar;
 		this.x = x;
 		this.y = y;
-		hp = 20;
+		hp = Constants.MAINHP;
 	}
 	
 	public void draw(){

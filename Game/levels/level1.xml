@@ -4,17 +4,17 @@
 		<spawncondition type = "key" />
 	</enemy>
 	<enemy type="blob1" color="none" group="2">
-		<spawnlocation type="absolute" x="1100" y="330" />
+		<spawnlocation type="absolute" x="900" y="330" />
 		<spawncondition type = "empty" />
 		<spawncondition type = "timer" time="5000" />
 	</enemy>
 	<enemy type="blob1" color="none" group="3">
-		<spawnlocation type="absolute" x="610" y="700" />
+		<spawnlocation type="absolute" x="500" y="700" />
 		<spawncondition type = "empty" />
 		<spawncondition type = "timer" time="5000" />
 	</enemy>
 	<enemy type="blob1" color="none" group="4">
-		<spawnlocation type="absolute" x="610" y="50" />
+		<spawnlocation type="absolute" x="500" y="50" />
 		<spawncondition type = "empty" />
 		<spawncondition type = "timer" time="5000" />
 	</enemy>
@@ -23,7 +23,7 @@
 		<spawncondition type = "empty" />
 	</enemy>
 	<enemy type="blob1" color="none" group="5">
-		<spawnlocation type="absolute" x="1100" y="50" />
+		<spawnlocation type="absolute" x="900" y="50" />
 		<spawncondition type = "empty" />
 	</enemy>
 	<enemy type="blob1" color="none" group="5">
@@ -31,7 +31,7 @@
 		<spawncondition type = "empty" />
 	</enemy>
 	<enemy type="blob1" color="none" group="5">
-		<spawnlocation type="absolute" x="1100" y="700" />
+		<spawnlocation type="absolute" x="900" y="700" />
 		<spawncondition type = "empty" />
 	</enemy>
 	<enemy type="blob1" color="none" group="6">

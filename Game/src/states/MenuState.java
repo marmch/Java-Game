@@ -1,5 +1,6 @@
 package states;
 
+import main.Constants;
 import main.Game;
 import main.MenuButton;
 
@@ -10,7 +11,6 @@ public class MenuState extends BasicGameState {
 
 	int stateID;
 	MenuButton levelButton;
-	final float SCALE = 1.2f;
 	int buttondelay;
 	final String level = "img\\LevelSelect.png";
 	//Initialize menu images, sound, etc.
@@ -25,7 +25,7 @@ public class MenuState extends BasicGameState {
 		Game.win.init(gc, sbg);
 		Game.levelwin.init(gc, sbg);
 		buttondelay = 500;
-		levelButton = new MenuButton(level, 200, 200, SCALE);
+		levelButton = new MenuButton(level, 200, 200, Constants.SCALE);
 	}
 
 	@Override

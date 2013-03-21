@@ -1,7 +1,7 @@
 <level>
 	<enemy type="blob3" color="none" group="1">
 		<direction angle="225" />
-		<spawnlocation type="absolute" x="1100" y="330" />
+		<spawnlocation type="absolute" x="900" y="330" />
 		<spawncondition type="key" />
 	</enemy>
 	<enemy type="blob3" color="none" group="1">
@@ -40,7 +40,7 @@
 	</enemy>
 	<enemy type="blob3" color="none" group="8">
 		<direction angle="180" />
-		<spawnlocation type="absolute" x="1100" y="50" />
+		<spawnlocation type="absolute" x="900" y="50" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob3" color="none" group="8">
@@ -50,7 +50,7 @@
 	</enemy>
 	<enemy type="blob3" color="none" group="8">
 		<direction angle="180" />
-		<spawnlocation type="absolute" x="1100" y="700" />
+		<spawnlocation type="absolute" x="900" y="700" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob1" color="none" group="8">
@@ -76,7 +76,7 @@
 	</enemy>
 	<enemy type="blob3" color="none" group="9">
 		<direction angle="90" />
-		<spawnlocation type="absolute" x="1100" y="50" />
+		<spawnlocation type="absolute" x="900" y="50" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob3" color="none" group="9">
@@ -86,7 +86,7 @@
 	</enemy>
 	<enemy type="blob3" color="none" group="9">
 		<direction angle="-90" />
-		<spawnlocation type="absolute" x="1100" y="700" />
+		<spawnlocation type="absolute" x="900" y="700" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob2" color="none" group="9">
@@ -128,37 +128,37 @@
 	</enemy>
 	<enemy type="blob2" color="none" group="17">
 		<direction angle="315" />
-		<spawnlocation type="absolute" x="270" y="230" />
+		<spawnlocation type="absolute" x="230" y="230" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob2" color="none" group="17">
 		<direction angle="315" />
-		<spawnlocation type="absolute" x="430" y="140" />
+		<spawnlocation type="absolute" x="360" y="140" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob2" color="none" group="17">
 		<direction angle="315" />
-		<spawnlocation type="absolute" x="610" y="50" />
+		<spawnlocation type="absolute" x="500" y="50" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob2" color="none" group="17">
 		<direction angle="135" />
-		<spawnlocation type="absolute" x="1100" y="330" />
+		<spawnlocation type="absolute" x="900" y="330" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob2" color="none" group="17">
 		<direction angle="135" />
-		<spawnlocation type="absolute" x="930" y="450" />
+		<spawnlocation type="absolute" x="760" y="450" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob2" color="none" group="17">
 		<direction angle="135" />
-		<spawnlocation type="absolute" x="770" y="570" />
+		<spawnlocation type="absolute" x="630" y="570" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob2" color="none" group="17">
 		<direction angle="135" />
-		<spawnlocation type="absolute" x="610" y="700" />
+		<spawnlocation type="absolute" x="500" y="700" />
 		<spawncondition type="empty" />
 	</enemy>
 	
@@ -169,12 +169,12 @@
 	</enemy>
 	<enemy type="blob3" color="none" group="18">
 		<direction angle="90" />
-		<spawnlocation type="absolute" x="1100" y="50" />
+		<spawnlocation type="absolute" x="900" y="50" />
 		<spawncondition type="timer" time="2000" />
 	</enemy>
 	<enemy type="blob3" color="none" group="18">
 		<direction angle="180" />
-		<spawnlocation type="absolute" x="1100" y="700" />
+		<spawnlocation type="absolute" x="900" y="700" />
 		<spawncondition type="timer" time="2000" />
 	</enemy>
 	<enemy type="blob3" color="none" group="18">

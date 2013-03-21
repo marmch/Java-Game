@@ -4,7 +4,7 @@
 		<spawncondition type="key" />
 	</enemy>
 	<enemy type="blob4" color="none" group="1">
-		<spawnlocation type="absolute" x="1100" y="50" />
+		<spawnlocation type="absolute" x="900" y="50" />
 		<spawncondition type="key" />
 	</enemy>
 	<enemy type="blob4" color="none" group="1">
@@ -12,7 +12,7 @@
 		<spawncondition type="key" />
 	</enemy>
 	<enemy type="blob4" color="none" group="1">
-		<spawnlocation type="absolute" x="1100" y="700" />
+		<spawnlocation type="absolute" x="900" y="700" />
 		<spawncondition type="key" />
 	</enemy>
 	<enemy type="blob1" color="none" group="2">
@@ -64,7 +64,7 @@
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob4" color="none" group="3">
-		<spawnlocation type="absolute" x="1100" y="100" />
+		<spawnlocation type="absolute" x="900" y="100" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob4" color="none" group="3">
@@ -72,7 +72,7 @@
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob4" color="none" group="3">
-		<spawnlocation type="absolute" x="1100" y="650" />
+		<spawnlocation type="absolute" x="900" y="650" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob4" color="none" group="3">
@@ -209,7 +209,7 @@
 	</enemy>
 	<enemy type="blob3" color="none" group="19">
 		<direction angle="180" />
-		<spawnlocation type="absolute" x="1100" y="400" />
+		<spawnlocation type="absolute" x="900" y="400" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob3" color="none" group="19">
@@ -218,7 +218,7 @@
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob4" color="none" group="19">
-		<spawnlocation type="absolute" x="1100" y="200" />
+		<spawnlocation type="absolute" x="900" y="200" />
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob4" color="none" group="19">
@@ -226,7 +226,7 @@
 		<spawncondition type="empty" />
 	</enemy>
 	<enemy type="blob4" color="none" group="19">
-		<spawnlocation type="absolute" x="1100" y="600" />
+		<spawnlocation type="absolute" x="900" y="600" />
 		<spawncondition type="empty" />
 	</enemy>
 </level>

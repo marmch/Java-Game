@@ -1,5 +1,6 @@
 package states;
 
+import main.Constants;
 import main.Game;
 import main.MenuButton;
 
@@ -11,7 +12,6 @@ public class LoseState extends BasicGameState {
 	int stateID;
 	MenuButton menuButton;
 	MenuButton retryButton;
-	final float SCALE = 1.2f;
 	final String menu = "img\\MenuButton.png";
 	final String retry = "img\\Retry.png";
 	//Initialize menu images, sound, etc.
@@ -22,8 +22,8 @@ public class LoseState extends BasicGameState {
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		menuButton = new MenuButton(menu, 100, 100, SCALE);
-		retryButton = new MenuButton(retry, 100, 300, SCALE);
+		menuButton = new MenuButton(menu, 100, 100, Constants.SCALE);
+		retryButton = new MenuButton(retry, 100, 300, Constants.SCALE);
 	}
 
 	@Override

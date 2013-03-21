@@ -1,5 +1,6 @@
 package enemies;
 
+import main.Collision;
 import main.Constants;
 import main.SpawnConditions;
 
@@ -75,7 +76,7 @@ public class Blob1 extends Enemy {
 		x += speedx * delta;
 		y += speedy * delta;
 		
-		if(collision.enemyWall(this)){
+		if(Collision.enemyWall(this)){
 			x -= speedx * delta;
 			y -= speedy * delta;
 		}
