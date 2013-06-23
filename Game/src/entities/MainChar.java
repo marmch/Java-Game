@@ -1,6 +1,7 @@
 package entities;
 
 import main.Constants;
+import main.Stats;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
@@ -27,7 +28,7 @@ public class MainChar {
 		charsprite = mainchar;
 		this.x = x;
 		this.y = y;
-		hp = Constants.MAINHP;
+		hp = Stats.mainhp;
 	}
 	
 	public void draw(){
@@ -35,8 +36,7 @@ public class MainChar {
 	}
 	
 	public void move(Input input, int delta, int max_x, int max_y){
-		//Lag jump fix sometimes causes problems; temporarily disabled
-		//This seems to help with lag jumps
+		//Lag spike fix sometimes causes problems; temporarily disabled
 		/*
 		dcounter++;
 		if(dcounter/1000000 > 0){

@@ -1,16 +1,10 @@
 package main;
-//v0.34
+//v0.35
 import org.lwjgl.LWJGLUtil;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-import states.LevelSelectState;
-import states.LevelWinState;
-import states.LoadState;
-import states.LoseState;
-import states.MenuState;
-import states.PlayState;
-import states.WinState;
+import states.*;
 
 import java.io.File;
 
@@ -24,8 +18,10 @@ public class Game extends StateBasedGame{
 	public final static int LEVELWINSTATE = 5;
 	public final static int WINSTATE = 6;
 	public final static int LEVELSELECTSTATE = 7;
+	public final static int LOADGAMESTATE = 8;
 	public static int currentlevel = 3;
 	public static LoadState load;
+	public static LoadGameState loadgame;
 	public static PlayState play;
 	public static MenuState menu;
 	public static LoseState lose;
@@ -42,6 +38,7 @@ public class Game extends StateBasedGame{
 		levelwin = new LevelWinState(LEVELWINSTATE);
 		win = new WinState(WINSTATE);
 		level = new LevelSelectState(LEVELSELECTSTATE);
+		loadgame = new LoadGameState(LOADGAMESTATE);
 		
 		//Initialize states
 		addState(menu);
@@ -51,6 +48,7 @@ public class Game extends StateBasedGame{
 		addState(win);
 		addState(levelwin);
 		addState(level);
+		addState(loadgame);
 		
 		play.setMap(Constants.RES_X, Constants.RES_Y);
 		
