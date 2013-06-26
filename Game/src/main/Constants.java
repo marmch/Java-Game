@@ -33,7 +33,7 @@ public class Constants {
 	public static final float MAINACCELERATION = 0.001f;
 	public static final int MAINBULLETDELAY = 500;
 	public static final float MAINBULLETSPEED = 1f;
-	
+	public static final int MAINHP = 50;
 	
 	public static final float SCALE = 1.2f;
 	

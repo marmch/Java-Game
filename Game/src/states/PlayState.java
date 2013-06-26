@@ -132,7 +132,7 @@ public class PlayState extends BasicGameState {
 			main.bulletdelta-= delta;
 		if(main.shoot(input) && main.bulletdelta <= 0){
 			bulletList.add(main.spawnBullet(bulletsprite));
-			main.bulletdelta = main.BULLETDELAY;
+			main.bulletdelta = main.bulletdelay;
 		}
 		
 		main.rotate(input); //Rotate main character towards mouse

@@ -13,12 +13,12 @@ public class MainChar {
 	
 	final float MAXSPEED = Constants.MAINMAXSPEED; //Maximum speed
 	final float ACCELERATION =Constants.MAINACCELERATION; //Acceleration rate
-	public final int BULLETDELAY = Constants.MAINBULLETDELAY; //Bullet spawn delay
 	final float BULLETSPEED = Constants.MAINBULLETSPEED; //Bullet speed
 	public Image charsprite; //Character sprite
 	float scaledAccel; //Scaled acceleration
+	public int bulletdelay = Constants.MAINBULLETDELAY; //Bullet spawn delay
+	public int hp = Constants.MAINHP; //Health
 	public int bulletdelta = 0; //Bullet spawn timer
-	public int hp; //Health
 	float speedx = 0;
 	float speedy = 0;
 	public float x,y; //Coordinates
@@ -29,6 +29,7 @@ public class MainChar {
 		this.x = x;
 		this.y = y;
 		hp = Stats.mainhp;
+		bulletdelay = Stats.mainfirerate;
 	}
 	
 	public void draw(){
