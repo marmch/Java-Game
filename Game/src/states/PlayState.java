@@ -22,6 +22,7 @@ public class PlayState extends BasicGameState {
 	String bulletsprite; //Bullet sprite location
 	ArrayList<Enemy> enemies; //Active enemy array
 	ArrayList<Enemy> enemyspawn; //Enemies to be spawned
+	public int pausetimer = 500;
 	int groupcounter; //Group counter
 	int max_x, max_y; //Level width and height
 	final int MAXLEVELS = 4;
@@ -54,8 +55,6 @@ public class PlayState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		main.draw(); //Render main character
 		
-		g.drawString("HP: " + main.hp, 50, 50);
-		
 		//Render bullets
 		for(Bullet bullet : bulletList)
 			bullet.draw();
@@ -71,13 +70,25 @@ public class PlayState extends BasicGameState {
 				enemy.draw();
 		}
 		
-		if(main.hp <= 0)
-			sbg.enterState(Game.LOSESTATE);
+		g.drawString("HP: " + main.hp, 50, 50);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		Input input = gc.getInput(); //Get input
+		
+		if(input.isKeyDown(Input.KEY_P) && pausetimer <= 0){
+			Game.pause.main=main;
+			Game.pause.bulletList=bulletList;
+			Game.pause.enemies=enemies;
+			Game.pause.pausetimer=500;
+			sbg.enterState(Game.PAUSESTATE);
+		}
+		else if(pausetimer > 0)
+			pausetimer -= delta;
+		
+		if(main.hp <= 0)
+			sbg.enterState(Game.LOSESTATE);
 		
 		main.move(input, delta, max_x, max_y); //Move main character
 		for(int i = 0; i < enemyspawn.size(); i++){

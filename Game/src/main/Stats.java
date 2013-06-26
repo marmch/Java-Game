@@ -8,6 +8,7 @@ public class Stats {
 	public static int mainhp = Constants.MAINHP;
 	public static int level = 0;
 	public static int mainfirerate = Constants.MAINBULLETDELAY;
+	public static int points = 0;
 	
 	public static void readStats(String file){
 		try{
@@ -15,6 +16,7 @@ public class Stats {
 			level = Integer.parseInt(br.readLine());
 			mainhp = Integer.parseInt(br.readLine());
 			mainfirerate = Integer.parseInt(br.readLine());
+			points = Integer.parseInt(br.readLine());
 			br.close();
 		}
 		catch(Exception e){
