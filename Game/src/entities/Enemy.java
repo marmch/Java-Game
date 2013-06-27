@@ -14,8 +14,10 @@ public class Enemy {
 	public SpawnConditions spawn;
 	public int group;
 	public int spawntime;
+	public int hp;
 	
 	public Enemy(String type, String color, SpawnConditions spawn, int group) throws SlickException{
+		hp = 12;
 		this.type = type;
 		this.color = color;
 		x = spawn.x;

@@ -48,11 +48,9 @@ public class MenuState extends BasicGameState {
 		blob = new Image("img\\mainchar.png");
 		blob.rotate(90);
 		blobx = 0;
-		playButton = new MenuButton(level, 230, 340, Constants.SCALE);
-		playButton.button = playButton.button.getScaledCopy(1.5f);
-		playButton.bigbutton = playButton.bigbutton.getScaledCopy(1.5f);
-		optionsButton = new MenuButton(options,320,520,Constants.SCALE);
-		controlsButton = new MenuButton(controls,320,660,Constants.SCALE);
+		playButton = new MenuButton(level, 224, 384, Constants.SCALE);
+		optionsButton = new MenuButton(options,320,544,Constants.SCALE);
+		controlsButton = new MenuButton(controls,320,656,Constants.SCALE);
 		controlsScreen = new Image[16];
 		for(int i = 0; i < 16; i++)
 			controlsScreen[i] = new Image("img\\Controls\\Controls " + (i+1) + ".png");
@@ -62,7 +60,7 @@ public class MenuState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		Input input = gc.getInput();
-		title.draw(70,10);
+		title.draw(64,16);
 		if(controlsOn){
 			playButton.draw(playButton.x,playButton.y, false);
 			optionsButton.draw(optionsButton.x,optionsButton.y, false);
@@ -74,7 +72,7 @@ public class MenuState extends BasicGameState {
 			optionsButton.draw(optionsButton.x,optionsButton.y, optionsButton.mouseOver(input));
 			controlsButton.draw(controlsButton.x,controlsButton.y, controlsButton.mouseOver(input));
 		}
-		blob.draw((int)blobx,300);
+		blob.draw((int)blobx,328);
 		//loadButton.draw(loadButton.x,loadButton.y, loadButton.mouseOver(input));
 	}
 

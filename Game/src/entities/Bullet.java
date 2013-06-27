@@ -8,7 +8,7 @@ public class Bullet {
 	protected float speedx = 0;
 	protected float speedy = 0;
 	protected float speed; //Bullet speed
-	protected float angle; //Bullet angle
+	public float angle; //Bullet angle
 	public float x,y; //Coordinates
 	public boolean friendly; //Damages enemy or player
 	

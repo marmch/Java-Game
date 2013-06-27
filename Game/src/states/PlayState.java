@@ -181,13 +181,19 @@ public class PlayState extends BasicGameState {
 				else{
 					if(Collision.enemyMain(enemies.get(i), main)){
 						main.hp--;
-						enemies.remove(i--);
+						enemies.get(i).hp--;
+						if(enemies.get(i).hp<=0)
+							enemies.remove(i--);
 						continue;
 					}
 					boolean loop = true;
 					for(int j = 0; j < bulletList.size(); j++){
 						if(Collision.enemyBullet(enemies.get(i), bulletList.get(j))){
-							enemies.remove(i--);
+							enemies.get(i).hp--;
+							if(enemies.get(i).hp<=0){
+								enemies.remove(i);
+								i--;
+							}
 							bulletList.remove(j--);
 							loop = false;
 							break;

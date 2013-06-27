@@ -68,6 +68,7 @@ public class Game extends StateBasedGame{
 		System.setProperty("org.lwjgl.librarypath", new File(new File(System.getProperty("user.dir"), "native"), LWJGLUtil.getPlatformName()).getAbsolutePath());
 		System.setProperty("net.java.games.input.librarypath", System.getProperty("org.lwjgl.librarypath"));
 		AppGameContainer app = new AppGameContainer(new Game());
+		app.setTargetFrameRate(Constants.FPS);
 		app.setDisplayMode(Constants.RES_X, Constants.RES_Y, false);
 		app.start();
 	}

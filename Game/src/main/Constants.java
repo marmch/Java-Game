@@ -4,12 +4,12 @@ public class Constants {
 	public static final int RES_X = 1024;
 	public static final int RES_Y = 768;
 	
-	
+	public static final int FPS = 100;
 	
 	public static int x;
 	
 	public static final float HOMINGSPEED = 2f;
-	public static final float HOMINGCONST = 0.08f;
+	public static final float HOMINGCONST = 0.06f;
 	
 	public static final int BLOB1DASHTIME = 500;
 	public static final int BLOB1DASHCOOLDOWN = 500;
