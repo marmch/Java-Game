@@ -22,6 +22,7 @@ public class MenuState extends BasicGameState {
 	int controlsdelay;
 	int controlsslide;
 	int buttondelay;
+	double blobx;
 	final String level = "img\\Play.png";
 	final String options = "img\\Options.png";
 	final String controls = "img\\Controls.png";
@@ -46,6 +47,7 @@ public class MenuState extends BasicGameState {
 		title = new Image("img\\Title.png");
 		blob = new Image("img\\mainchar.png");
 		blob.rotate(90);
+		blobx = 0;
 		playButton = new MenuButton(level, 230, 340, Constants.SCALE);
 		playButton.button = playButton.button.getScaledCopy(1.5f);
 		playButton.bigbutton = playButton.bigbutton.getScaledCopy(1.5f);
@@ -61,7 +63,6 @@ public class MenuState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		Input input = gc.getInput();
 		title.draw(70,10);
-		blob.draw(960,300);
 		if(controlsOn){
 			playButton.draw(playButton.x,playButton.y, false);
 			optionsButton.draw(optionsButton.x,optionsButton.y, false);
@@ -73,7 +74,7 @@ public class MenuState extends BasicGameState {
 			optionsButton.draw(optionsButton.x,optionsButton.y, optionsButton.mouseOver(input));
 			controlsButton.draw(controlsButton.x,controlsButton.y, controlsButton.mouseOver(input));
 		}
-		
+		blob.draw((int)blobx,300);
 		//loadButton.draw(loadButton.x,loadButton.y, loadButton.mouseOver(input));
 	}
 
@@ -97,6 +98,9 @@ public class MenuState extends BasicGameState {
 			}
 		}
 		else{
+			blobx += (double)delta * 0.3;
+			if(blobx >= Constants.RES_X)
+				blobx = 0;
 			if(buttondelay < 0 && playButton.mouseOver(input) && input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)){
 				controlsOn = false;
 				sbg.enterState(Game.LEVELSELECTSTATE);
