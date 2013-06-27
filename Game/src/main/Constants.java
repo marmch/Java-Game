@@ -8,8 +8,8 @@ public class Constants {
 	
 	public static int x;
 	
-	public static final float HOMINGACCELERATION = 0.03f;
-	public static final float HOMINGCONST = 1f;
+	public static final float HOMINGSPEED = 2f;
+	public static final float HOMINGCONST = 0.08f;
 	
 	public static final int BLOB1DASHTIME = 500;
 	public static final int BLOB1DASHCOOLDOWN = 500;
@@ -39,8 +39,8 @@ public class Constants {
 	
 	
 	
-	public static final int LEVELPOSX = 384;
-	public static final int LEVELPOSY = 448;
+	public static final int LEVELPOSX = 450;
+	public static final int LEVELPOSY = 450;
 	
 	public static final int CHARGRIDX = 80;
 	public static final int CHARGRIDY = 192;

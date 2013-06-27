@@ -9,8 +9,8 @@ import entities.MainChar;
 
 public class HomingBullet extends Bullet {
 	
-	final float HOMING = Constants.HOMINGACCELERATION;
-	final float ACCELERATION = Constants.HOMINGCONST;
+	final float HOMING = Constants.HOMINGCONST;
+	final float ACCELERATION = Constants.HOMINGSPEED;
 	
 	public HomingBullet(String type, String bullet, float x, float y, float speed, float angle, boolean friendly) throws SlickException {
 		super(type, bullet, x, y, speed, angle, friendly);

@@ -23,7 +23,6 @@ public class Game extends StateBasedGame{
 	public static LoadState load;
 	public static LoadGameState loadgame;
 	public static PlayState play;
-	public static PauseState pause;
 	public static MenuState menu;
 	public static LoseState lose;
 	public static LevelWinState levelwin;
@@ -34,7 +33,6 @@ public class Game extends StateBasedGame{
 		super("Game");
 		load = new LoadState(LOADSTATE);
 		play = new PlayState(PLAYSTATE);
-		pause = new PauseState(PAUSESTATE);
 		menu = new MenuState(MENUSTATE);
 		lose = new LoseState(LOSESTATE);
 		levelwin = new LevelWinState(LEVELWINSTATE);
@@ -46,7 +44,6 @@ public class Game extends StateBasedGame{
 		addState(menu);
 		addState(load);
 		addState(play);
-		addState(pause);
 		addState(lose);
 		addState(win);
 		addState(levelwin);
